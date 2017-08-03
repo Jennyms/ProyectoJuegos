@@ -22,10 +22,19 @@ public class JuegoPiscina extends javax.swing.JFrame {
     String n4 = "";
     String n5 = "";
     boolean bus = false;
-    public static boolean boton1= true;
     public JuegoPiscina() {
 
         initComponents();
+        nada1.setContentAreaFilled(false);
+        nada1.setBorder(null);
+        nada2.setContentAreaFilled(false);
+        nada2.setBorder(null);
+        nada3.setContentAreaFilled(false);
+        nada3.setBorder(null);
+        nada4.setContentAreaFilled(false);
+        nada4.setBorder(null);
+        nada5.setContentAreaFilled(false);
+        nada5.setBorder(null);
     }
 
 
@@ -56,6 +65,9 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblLinea = new javax.swing.JLabel();
         piscina = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -76,7 +88,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nuevaActionPerformed(evt);
             }
         });
-        getContentPane().add(nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 140, 90, 40));
+        getContentPane().add(nueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 140, 90, 40));
 
         nada5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1.png"))); // NOI18N
         nada5.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +96,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nada5ActionPerformed(evt);
             }
         });
-        getContentPane().add(nada5, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 60, 70));
+        getContentPane().add(nada5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 60, 70));
 
         nada4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/2.png"))); // NOI18N
         nada4.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +104,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nada4ActionPerformed(evt);
             }
         });
-        getContentPane().add(nada4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 60, 70));
+        getContentPane().add(nada4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 60, 70));
 
         nada3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/3.png"))); // NOI18N
         nada3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +112,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nada3ActionPerformed(evt);
             }
         });
-        getContentPane().add(nada3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 60, 70));
+        getContentPane().add(nada3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 60, 70));
 
         nada2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/4.png"))); // NOI18N
         nada2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +120,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nada2ActionPerformed(evt);
             }
         });
-        getContentPane().add(nada2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 60, 70));
+        getContentPane().add(nada2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 60, 70));
 
         nada1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/5.png"))); // NOI18N
         nada1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,16 +128,16 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 nada1ActionPerformed(evt);
             }
         });
-        getContentPane().add(nada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 60, 70));
+        getContentPane().add(nada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 60, 70));
 
         eliminar.setText("Eliminar Nadador");
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         txtR.setColumns(20);
         txtR.setRows(5);
         jScrollPane1.setViewportView(txtR);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 230, 180, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 200, 230, 240));
 
         iniciar.setText("INICIAR CARRERA");
         iniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +145,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 iniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 140, 40));
+        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 80, 140, 40));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, 400));
@@ -142,6 +154,17 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jPanel1.add(piscina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 850, 420));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 860, 420));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/llave1.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, 70));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Seleccione ");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 70, 20));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("nadadores");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,7 +183,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada1.setEnabled(false);
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador1.setIcon(icono);
-        boolean boton1 = false;
         bus = true;
         n1 = "1";
     }//GEN-LAST:event_nada1ActionPerformed
@@ -219,13 +241,14 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada5.setEnabled(true);
         iniciar.setEnabled(true);
         nueva.setEnabled(false);
+        bus = false;
     }//GEN-LAST:event_nuevaActionPerformed
 
     
     
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
        if(bus){
-        JuegoPiscina.txtR.setText("->");
+        JuegoPiscina.txtR.setText("TIEMPO DE CADA NADADOR");
         carrera.iniciar(n1, n2, n3, n4, n5);
         iniciar.setEnabled(false);
         nueva.setEnabled(true);
@@ -269,6 +292,9 @@ public class JuegoPiscina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel lblLinea;

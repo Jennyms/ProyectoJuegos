@@ -31,16 +31,16 @@ public class hiloUno extends Thread {
 
             for (int j = 0; j < 120; j++) {
                 try {
-                    JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x + carrera.losNadadores[x].getAvance(), JuegoPiscina.nadador1.getLocation().y);
-                    //System.out.println(this.getName()+":"+JuegoPiscina.nadador1.getLocation().x+" -- "+JuegoPiscina.lblLinea.getLocation().x);
+                    JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x + carrera.losNadadores[0].getAvance(), JuegoPiscina.nadador1.getLocation().y);
+                    
 
-                    sleep(carrera.losNadadores[x].getVelocidad());
+                    sleep(carrera.losNadadores[0].getVelocidad());
 
                     if (JuegoPiscina.nadador1.getLocation().x >= JuegoPiscina.lblLinea.getLocation().x) {
                         long tf = System.currentTimeMillis();
                         long tt = tf - ti;
-                        carrera.losNadadores[x].setTiempo(tt);
-                        JuegoPiscina.txtR.append("\n" + this.getName() + ":" + carrera.losNadadores[x].getTiempo() + " ms");
+                        carrera.losNadadores[0].setTiempo(tt);
+                        JuegoPiscina.txtR.append("\n" + "Nadador #1: " + carrera.losNadadores[0].getTiempo() + " segundos");
                         j = 120;
                     } else {
                         j++;
@@ -63,7 +63,7 @@ public class hiloUno extends Thread {
             for (int j = 0; j < 120; j++) {
                 try {
                     JuegoPiscina.nadador2.setLocation(JuegoPiscina.nadador2.getLocation().x + carrera.losNadadores[1].getAvance(), JuegoPiscina.nadador2.getLocation().y);
-                    //System.out.println(this.getName()+":"+JuegoPiscina.nadador2.getLocation().x+" -- "+JuegoPiscina.lblLinea.getLocation().x);
+                    
 
                     sleep(carrera.losNadadores[1].getVelocidad());
 
@@ -71,7 +71,7 @@ public class hiloUno extends Thread {
                         long tf = System.currentTimeMillis();
                         long tt = tf - ti;
                         carrera.losNadadores[1].setTiempo(tt);
-                        JuegoPiscina.txtR.append("\n" + this.getName() + ":" + carrera.losNadadores[1].getTiempo() + " ms");
+                        JuegoPiscina.txtR.append("\n" + "Nadador #2: " + carrera.losNadadores[1].getTiempo() + " segundos");
                         j = 120;
                     } else {
                         j++;
@@ -94,7 +94,7 @@ public class hiloUno extends Thread {
             for (int j = 0; j < 120; j++) {
                 try {
                     JuegoPiscina.nadador3.setLocation(JuegoPiscina.nadador3.getLocation().x + carrera.losNadadores[2].getAvance(), JuegoPiscina.nadador3.getLocation().y);
-                    //System.out.println(this.getName()+":"+JuegoPiscina.nadador1.getLocation().x+" -- "+JuegoPiscina.lblLinea.getLocation().x);
+                    
 
                     sleep(carrera.losNadadores[2].getVelocidad());
 
@@ -102,7 +102,7 @@ public class hiloUno extends Thread {
                         long tf = System.currentTimeMillis();
                         long tt = tf - ti;
                         carrera.losNadadores[2].setTiempo(tt);
-                        JuegoPiscina.txtR.append("\n" + this.getName() + ":" + carrera.losNadadores[2].getTiempo() + " ms");
+                        JuegoPiscina.txtR.append("\n" + "Nadador #3: " + carrera.losNadadores[2].getTiempo() + " segundos");
                         j = 120;
                     } else {
                         j++;
@@ -125,15 +125,14 @@ public class hiloUno extends Thread {
             for (int j = 0; j < 120; j++) {
                 try {
                     JuegoPiscina.nadador4.setLocation(JuegoPiscina.nadador4.getLocation().x + carrera.losNadadores[3].getAvance(), JuegoPiscina.nadador4.getLocation().y);
-                    //System.out.println(this.getName()+":"+JuegoPiscina.nadador1.getLocation().x+" -- "+JuegoPiscina.lblLinea.getLocation().x);
-
+                    
                     sleep(carrera.losNadadores[3].getVelocidad());
 
                     if (JuegoPiscina.nadador4.getLocation().x >= JuegoPiscina.lblLinea.getLocation().x) {
                         long tf = System.currentTimeMillis();
                         long tt = tf - ti;
                         carrera.losNadadores[3].setTiempo(tt);
-                        JuegoPiscina.txtR.append("\n" + this.getName() + ":" + carrera.losNadadores[3].getTiempo() + " ms");
+                        JuegoPiscina.txtR.append("\n" + "Nadador #4: " + carrera.losNadadores[3].getTiempo() + " segundos");
                         j = 120;
                     } else {
                         j++;
@@ -156,7 +155,7 @@ public class hiloUno extends Thread {
             for (int j = 0; j < 120; j++) {
                 try {
                     JuegoPiscina.nadador5.setLocation(JuegoPiscina.nadador5.getLocation().x + carrera.losNadadores[4].getAvance(), JuegoPiscina.nadador5.getLocation().y);
-                    //System.out.println(this.getName()+":"+JuegoPiscina.nadador1.getLocation().x+" -- "+JuegoPiscina.lblLinea.getLocation().x);
+                    
 
                     sleep(carrera.losNadadores[4].getVelocidad());
 
@@ -164,7 +163,7 @@ public class hiloUno extends Thread {
                         long tf = System.currentTimeMillis();
                         long tt = tf - ti;
                         carrera.losNadadores[4].setTiempo(tt);
-                        JuegoPiscina.txtR.append("\n" + this.getName() + ":" + carrera.losNadadores[4].getTiempo() + " ms");
+                        JuegoPiscina.txtR.append("\n" + "Nadador #5: " + carrera.losNadadores[4].getTiempo() + " segundos");
                         j = 120;
                     } else {
                         j++;
