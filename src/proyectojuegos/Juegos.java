@@ -1,5 +1,7 @@
 package proyectojuegos;
 
+import javax.swing.JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +20,7 @@ public class Juegos extends javax.swing.JFrame {
      */
     public Juegos() {
         initComponents();
-        
+ 
     }
 
     /**
@@ -84,6 +86,8 @@ public class Juegos extends javax.swing.JFrame {
         JuegoPiscina ventana= new JuegoPiscina();
         ventana.setVisible(true);     
         ventana.setLocationRelativeTo(null);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -92,6 +96,8 @@ public class Juegos extends javax.swing.JFrame {
         JuegoPreguntas preguntas = new JuegoPreguntas();
         preguntas.setLocationRelativeTo(null);
         preguntas.setVisible(true);
+        preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

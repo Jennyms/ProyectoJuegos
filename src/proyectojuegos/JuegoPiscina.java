@@ -16,6 +16,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     /**
      * Creates new form JuegoPiscina
      */
+    public static boolean boton1= true;
     public JuegoPiscina() {
 
         initComponents();
