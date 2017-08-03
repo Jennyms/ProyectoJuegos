@@ -267,7 +267,8 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
         if (num1 == n1 & num2 == n2 & num3 == n3) {
             h1.suspend();
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja2.png")));
-            JOptionPane.showMessageDialog(null, "Desactivado");
+            JOptionPane.showMessageDialog(null, "Caja fuerte desactivada");
+            dispose();
            
         }
     }//GEN-LAST:event_jButton1ActionPerformed

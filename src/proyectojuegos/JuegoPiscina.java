@@ -16,15 +16,18 @@ public class JuegoPiscina extends javax.swing.JFrame {
     /**
      * Creates new form JuegoPiscina
      */
+    String n1 = "";
+    String n2 = "";
+    String n3 = "";
+    String n4 = "";
+    String n5 = "";
+    boolean bus = false;
     public static boolean boton1= true;
     public JuegoPiscina() {
 
         initComponents();
     }
 
-    public void detenerimagen() {
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,12 +49,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada3 = new javax.swing.JButton();
         nada2 = new javax.swing.JButton();
         nada1 = new javax.swing.JButton();
-        piscina = new javax.swing.JLabel();
         eliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtR = new javax.swing.JTextArea();
         iniciar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lblLinea = new javax.swing.JLabel();
+        piscina = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -114,9 +118,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         getContentPane().add(nada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 60, 70));
 
-        piscina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/piscina.png"))); // NOI18N
-        getContentPane().add(piscina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 860, 420));
-
         eliminar.setText("Eliminar Nadador");
         getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
@@ -134,8 +135,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 140, 40));
 
-        lblLinea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/linea.png"))); // NOI18N
-        getContentPane().add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 80, -1, -1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, 400));
+
+        piscina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/piscina.png"))); // NOI18N
+        jPanel1.add(piscina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 850, 420));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 860, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +151,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada3.setEnabled(false);
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador3.setIcon(icono);
+        bus = true;
+        n3 = "3";
     }//GEN-LAST:event_nada3ActionPerformed
 
     private void nada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada1ActionPerformed
@@ -153,14 +161,17 @@ public class JuegoPiscina extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador1.setIcon(icono);
         boolean boton1 = false;
+        bus = true;
+        n1 = "1";
     }//GEN-LAST:event_nada1ActionPerformed
 
     private void nada2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada2ActionPerformed
         // TODO add your handling code here:
         nada2.setEnabled(false);
-
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador2.setIcon(icono);
+        bus = true;
+        n2 = "2";
     }//GEN-LAST:event_nada2ActionPerformed
 
     private void nada4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada4ActionPerformed
@@ -168,6 +179,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada4.setEnabled(false);
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador4.setIcon(icono);
+        bus = true;
+        n4 = "4";
     }//GEN-LAST:event_nada4ActionPerformed
 
     private void nada5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada5ActionPerformed
@@ -175,32 +188,48 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada5.setEnabled(false);
         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/1.png"));
         JuegoPiscina.nadador5.setIcon(icono);
+        bus = true;
+        n5 = "5";
     }//GEN-LAST:event_nada5ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         nueva.setEnabled(false);
         carrera.registrarNadador();
-        nadador1.setText(carrera.losNadadores[0].getNombre());
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void nuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaActionPerformed
         // TODO add your handling code here:
         carrera.reiniciar();
         nadador1.setLocation(carrera.losNadadores[0].getCoorX(), carrera.losNadadores[0].getCoorY());
+        nadador2.setLocation(carrera.losNadadores[1].getCoorX(), carrera.losNadadores[1].getCoorY());
+        nadador3.setLocation(carrera.losNadadores[2].getCoorX(), carrera.losNadadores[2].getCoorY());
+        nadador4.setLocation(carrera.losNadadores[3].getCoorX(), carrera.losNadadores[3].getCoorY());
+        nadador5.setLocation(carrera.losNadadores[4].getCoorX(), carrera.losNadadores[4].getCoorY());
+        nadador1.setIcon(null);
+        nadador2.setIcon(null);
+        nadador3.setIcon(null);
+        nadador4.setIcon(null);
+        nadador5.setIcon(null);
+        nada1.setEnabled(true);
+        nada2.setEnabled(true);
+        nada3.setEnabled(true);
+        nada4.setEnabled(true);
+        nada5.setEnabled(true);
         iniciar.setEnabled(true);
         nueva.setEnabled(false);
-//        carrera.detener();
-
     }//GEN-LAST:event_nuevaActionPerformed
 
+    
+    
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
-        // TODO add your handling code here:
+       if(bus){
         JuegoPiscina.txtR.setText("->");
-        carrera.iniciar();
-//        carrera.mover();
+        carrera.iniciar(n1, n2, n3, n4, n5);
         iniciar.setEnabled(false);
         nueva.setEnabled(true);
+       }
     }//GEN-LAST:event_iniciarActionPerformed
 
     /**
@@ -240,6 +269,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel lblLinea;
     private javax.swing.JButton nada1;
