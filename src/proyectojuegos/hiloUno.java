@@ -26,7 +26,7 @@ public class hiloUno extends Thread {
     public void run() {
 
         if (n1 == "1") {
-
+            
             long ti = System.currentTimeMillis();
 
             for (int j = 0; j < 120; j++) {
@@ -53,7 +53,6 @@ public class hiloUno extends Thread {
             }//for
 
             JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x, JuegoPiscina.nadador1.getLocation().y);
-
             this.stop();
         }
         if (n1== "2") {
