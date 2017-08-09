@@ -17,17 +17,19 @@ import javax.swing.ImageIcon;
  * @author jenni
  */
 public class hiloDos extends Thread {
-
-    public hiloDos(String name) {
-        this.setName(name);
+    String n1 = "";
+    int x = 0;
+    public hiloDos(String name, int x1) {
+        n1 = name;
+        x = x1;
     }//constr
    static int contador = 0;
    
     int velocidad = 1; //segundos
     int velmil = velocidad * 400;
     
-    Timer timer;
-    TimerTask tarea;
+    public static Timer timer;
+    public static TimerTask tarea;
 
     {
 

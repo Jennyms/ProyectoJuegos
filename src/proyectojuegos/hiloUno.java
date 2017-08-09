@@ -41,6 +41,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[0].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #1: " + carrera.losNadadores[0].getTiempo() + " segundos");
+                        hiloDos.tarea.cancel();
                         j = 120;
                     } else {
                         j++;
@@ -54,6 +55,7 @@ public class hiloUno extends Thread {
 
             JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x, JuegoPiscina.nadador1.getLocation().y);
             this.stop();
+            
         }
         if (n1== "2") {
 

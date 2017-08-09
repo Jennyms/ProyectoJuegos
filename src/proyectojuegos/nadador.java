@@ -10,48 +10,40 @@ package proyectojuegos;
  * @author jenni
  */
 public class nadador {
-
-    private int codigo, coorX, coorY, velocidad, avance;
+// this variables are private for them to be modified
+    private int coorX, coorY, velocidad, avance;
     private long tiempo;
     private String nombre;
 
     public nadador(int codigo, int coorX, int coorY, long tiempo, int velocidad, String nombre) {
-        this.codigo = codigo;
+//        this.codigo = codigo;
         this.coorX = coorX;
         this.coorY = coorY;
         this.tiempo = tiempo;
         this.velocidad = velocidad;
         this.nombre = nombre;
     }
-
+// this method return the progress that the swimmer is having
     public int getAvance() {
         return avance;
     }
-
+// this method is always changing the progress that the swimmer is having
     public void setAvance(int avance) {
         this.avance = avance;
     }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
+//this method get and return the coordinate of each swimmer in the "x" position
     public int getCoorX() {
         return coorX;
     }
-
+// this method is always changing the coordinate of each swimmer in the "x" position that they are getting
     public void setCoorX(int coorX) {
         this.coorX = coorX;
     }
-
+//this method get and return the coordinate of each swimmer in the "y" position
     public int getCoorY() {
         return coorY;
     }
-
+// this method is always changing the coordinate of each swimmer in the "y" position that they are getting
     public void setCoorY(int coorY) {
         this.coorY = coorY;
     }
@@ -70,14 +62,5 @@ public class nadador {
 
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
+    }  
 }

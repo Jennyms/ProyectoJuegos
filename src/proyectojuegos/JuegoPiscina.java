@@ -6,6 +6,7 @@ package proyectojuegos;
  * and open the template in the editor.
  */
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -26,6 +27,10 @@ public class JuegoPiscina extends javax.swing.JFrame {
     public JuegoPiscina() {
 
         initComponents();
+        back2.setBorder(null);
+        back2.setContentAreaFilled(false);
+        cerrar2.setBorder(null);
+        cerrar2.setContentAreaFilled(false);
         nada1.setContentAreaFilled(false);
         nada1.setBorder(null);
         nada2.setContentAreaFilled(false);
@@ -48,6 +53,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
     private void initComponents() {
 
         eliminar = new javax.swing.JButton();
+        back2 = new javax.swing.JButton();
+        cerrar2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         lblLinea = new javax.swing.JLabel();
         nadador1 = new javax.swing.JLabel();
@@ -71,6 +78,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         txtR = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -80,7 +88,30 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         eliminar.setText("Eliminar Nadador");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
+
+        back2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha-hacia-la-izquierda.png"))); // NOI18N
+        back2.setFocusable(false);
+        back2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
+
+        cerrar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
+        cerrar2.setFocusable(false);
+        cerrar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrar2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 10, 50, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, 400));
@@ -88,6 +119,12 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jPanel1.add(nadador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 80));
         jPanel1.add(nadador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 100, 80));
         jPanel1.add(nadador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 80));
+
+        nadador5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                nadador5MousePressed(evt);
+            }
+        });
         jPanel1.add(nadador5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, 70));
 
         piscina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/piscina.png"))); // NOI18N
@@ -95,6 +132,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 860, 460));
 
+        jPanel2.setBackground(new java.awt.Color(233, 150, 122));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -289,8 +327,33 @@ public class JuegoPiscina extends javax.swing.JFrame {
             carrera.iniciar(n1, n2, n3, n4, n5);
             iniciar.setEnabled(false);
             nueva.setEnabled(true);
+            
         }
     }//GEN-LAST:event_iniciarActionPerformed
+
+    private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
+        // TODO add your handling code here:
+        Juegos2 ventana = new Juegos2();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_back2ActionPerformed
+
+    private void cerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_cerrar2ActionPerformed
+
+    private void nadador5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nadador5MousePressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_nadador5MousePressed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,6 +390,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back2;
+    private javax.swing.JButton cerrar2;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
     private javax.swing.JLabel jLabel1;
