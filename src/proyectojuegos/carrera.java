@@ -20,7 +20,6 @@ public class carrera {
     static String n3 = "";
     static String n4 = "";
     static String n5 = "";
-    public static String h6="";
     
     static public void reiniciar() {
 //        int[] vel = {240, 250, 255, 245};
@@ -98,8 +97,6 @@ public class carrera {
         n5 = n55;
         // each thread start when the botton of each swimmer is activeted
         hiloUno h1 = new hiloUno(n1, 0);
-        hiloDos h6= new hiloDos(n1,0);
-        h6.start();
         h1.start();
 
         hiloUno h2 = new hiloUno(n2, 1);
