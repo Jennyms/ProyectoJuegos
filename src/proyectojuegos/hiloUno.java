@@ -22,6 +22,13 @@ public class hiloUno extends Thread {
     static int contador3 = 0;
     static int contador4 = 0;
     static int contador5 = 0;
+    
+    static int nad1=0;
+    static int nad2=0;
+    static int nad3=0;
+    static int nad4=0;
+    static int nad5=0;
+    
     String n1 = "";
 
     int x = 0;
@@ -67,7 +74,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[0].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #1: " + carrera.losNadadores[0].getTiempo() + " segundos");
-//                        hiloDos.tarea.cancel();
+                        nad1=(int)tt;
                         j = 120;
                     } else {
                         j++;
@@ -115,6 +122,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[1].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #2: " + carrera.losNadadores[1].getTiempo() + " segundos");
+                        nad2=(int)tt;
                         j = 120;
                     } else {
                         j++;
@@ -162,6 +170,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[2].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #3: " + carrera.losNadadores[2].getTiempo() + " segundos");
+                        nad3=(int)tt;
                         j = 120;
                     } else {
                         j++;
@@ -209,6 +218,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[3].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #4: " + carrera.losNadadores[3].getTiempo() + " segundos");
+                        nad4=(int)tt;
                         j = 120;
                     } else {
                         j++;
@@ -256,6 +266,7 @@ public class hiloUno extends Thread {
                         long tt = tf - ti;
                         carrera.losNadadores[4].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #5: " + carrera.losNadadores[4].getTiempo() + " segundos");
+                        nad5=(int)tt;
                         j = 120;
                     } else {
                         j++;

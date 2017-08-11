@@ -23,7 +23,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     String n4 = "";
     String n5 = "";
     boolean bus = false;
- 
+    int contcarreras=0;
     public JuegoPiscina() {
 
         initComponents();
@@ -76,6 +76,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nueva = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtR = new javax.swing.JTextArea();
+        time = new javax.swing.JTextField();
+        Reportes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -236,7 +238,23 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 140, 230, 310));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 200, 230, 310));
+
+        time.setText("0:00");
+        time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 80, 30));
+
+        Reportes.setText("jButton1");
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -325,9 +343,11 @@ public class JuegoPiscina extends javax.swing.JFrame {
         if (bus) {
             JuegoPiscina.txtR.setText("TIEMPO DE CADA NADADOR");
             carrera.iniciar(n1, n2, n3, n4, n5);
+            contcarreras++;
+            System.out.println(contcarreras);
             iniciar.setEnabled(false);
             nueva.setEnabled(true);
-            
+
         }
     }//GEN-LAST:event_iniciarActionPerformed
 
@@ -347,13 +367,26 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     private void nadador5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nadador5MousePressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_nadador5MousePressed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        // TODO add your handling code here:  
+        Reportes repor = new Reportes();
+        repor.setVisible(true);
+        repor.setLocationRelativeTo(null);
+        repor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_ReportesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,6 +423,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton Reportes;
     private javax.swing.JButton back2;
     private javax.swing.JButton cerrar2;
     private javax.swing.JButton eliminar;
@@ -413,6 +447,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     public static javax.swing.JLabel nadador5;
     private javax.swing.JButton nueva;
     public static javax.swing.JLabel piscina;
+    public static javax.swing.JTextField time;
     public static javax.swing.JTextArea txtR;
     // End of variables declaration//GEN-END:variables
 }
