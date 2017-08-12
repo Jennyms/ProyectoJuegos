@@ -5,8 +5,11 @@ package proyectojuegos;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,9 +26,10 @@ public class JuegoPiscina extends javax.swing.JFrame {
     String n4 = "";
     String n5 = "";
     boolean bus = false;
-    int contcarreras=0;
-    public JuegoPiscina() {
+    int contcarreras = 0;
 
+    public JuegoPiscina() {
+        t = new Timer(10, acciones);
         initComponents();
         back2.setBorder(null);
         back2.setContentAreaFilled(false);
@@ -77,7 +81,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtR = new javax.swing.JTextArea();
         time = new javax.swing.JTextField();
-        Reportes = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -240,7 +244,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 200, 230, 310));
 
-        time.setText("0:00");
         time.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timeActionPerformed(evt);
@@ -248,17 +251,40 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 80, 30));
 
-        Reportes.setText("jButton1");
-        Reportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReportesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, -1, -1));
+        jLabel3.setText("DURACION DE LA CARRERA");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Timer t;
+    private int h, m, s, cs;
+    private ActionListener acciones = new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            ++cs;
+            if (cs == 100) {
+                cs = 0;
+                ++s;
+            }
+            if (s == 60) {
+                s = 0;
+                ++m;
+            }
+            if (m == 60) {
+                m = 0;
+                ++h;
+            }
+            actualizarLabel();
+        }
+
+    };
+
+    private void actualizarLabel() {
+        String tiempo = (m <= 9 ? "0" : "") + m + ":" + (s <= 9 ? "0" : "") + s;
+        time.setText(tiempo);
+    }
     private void nada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada3ActionPerformed
         // TODO add your handling code here:
         nada3.setEnabled(false);
@@ -336,13 +362,19 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n3 = "";
         n4 = "";
         n5 = "";
+        t.stop();
+        m = 0;
+        s = 0;
+        actualizarLabel();
     }//GEN-LAST:event_nuevaActionPerformed
 
 
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         if (bus) {
+            t.start();
             JuegoPiscina.txtR.setText("TIEMPO DE CADA NADADOR");
             carrera.iniciar(n1, n2, n3, n4, n5);
+
             contcarreras++;
             System.out.println(contcarreras);
             iniciar.setEnabled(false);
@@ -379,15 +411,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_timeActionPerformed
 
-    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
-        // TODO add your handling code here:  
-        Reportes repor = new Reportes();
-        repor.setVisible(true);
-        repor.setLocationRelativeTo(null);
-        repor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        dispose();
-    }//GEN-LAST:event_ReportesActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -423,13 +446,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton Reportes;
     private javax.swing.JButton back2;
     private javax.swing.JButton cerrar2;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -28,9 +28,7 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
         h1 = new Thread(this);
         jSpinner1.setEnabled(false);
         jSpinner2.setEnabled(false);
-        jSpinner3.setEnabled(false);
-        setLocationRelativeTo(null);
-        
+        jSpinner3.setEnabled(false); 
     }
 
     public void run() {
