@@ -81,6 +81,11 @@ public class Juegos2 extends javax.swing.JFrame {
 
         cerrar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         cerrar3.setFocusable(false);
+        cerrar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrar3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,6 +194,11 @@ public class Juegos2 extends javax.swing.JFrame {
         timer = new Timer();
         timer.scheduleAtFixedRate(tarea, velmil, velmil);
     }//GEN-LAST:event_formWindowOpened
+
+    private void cerrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_cerrar3ActionPerformed
 
     /**
      * @param args the command line arguments

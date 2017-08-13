@@ -5,6 +5,7 @@ package proyectojuegos;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import desempate.miframe;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -45,6 +46,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada4.setBorder(null);
         nada5.setContentAreaFilled(false);
         nada5.setBorder(null);
+        reportes.setContentAreaFilled(false);
+        reportes.setBorder(null);
     }
 
     /**
@@ -56,7 +59,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        eliminar = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
         cerrar2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -82,6 +84,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
         txtR = new javax.swing.JTextArea();
         time = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        eliminar = new javax.swing.JButton();
+        comboBox = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        reportes = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        desempate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -91,15 +100,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        eliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        eliminar.setText("Eliminar Nadador");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, -1, -1));
 
         back2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha-hacia-la-izquierda.png"))); // NOI18N
         back2.setFocusable(false);
@@ -120,7 +120,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         getContentPane().add(cerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 10, 50, -1));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, 400));
+        jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, -70, -1, 480));
         jPanel1.add(nadador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 110, 80));
         jPanel1.add(nadador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 80));
         jPanel1.add(nadador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 100, 80));
@@ -136,7 +136,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         piscina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/piscina.png"))); // NOI18N
         jPanel1.add(piscina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 850, 420));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 860, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 860, 440));
 
         jPanel2.setBackground(new java.awt.Color(233, 150, 122));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -188,7 +188,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         jPanel2.add(nada5);
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 10, -1, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -213,6 +213,19 @@ public class JuegoPiscina extends javax.swing.JFrame {
         txtR.setRows(5);
         jScrollPane1.setViewportView(txtR);
 
+        time.setEditable(false);
+        time.setBackground(new java.awt.Color(255, 255, 255));
+        time.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        time.setText("00:00:00");
+        time.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("DURACION DE LA CARRERA");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -223,36 +236,99 @@ public class JuegoPiscina extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(47, 47, 47)
                         .addComponent(nueva))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(iniciar)))
+                        .addGap(39, 39, 39)
+                        .addComponent(iniciar))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel3)))
                 .addGap(56, 56, 56))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(iniciar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nueva)
-                .addContainerGap())
+                .addGap(19, 19, 19))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 200, 230, 310));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 170, 230, 310));
 
-        time.addActionListener(new java.awt.event.ActionListener() {
+        jPanel4.setBackground(new java.awt.Color(233, 150, 122));
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        eliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        eliminar.setText("Eliminar Nadador");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timeActionPerformed(evt);
+                eliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 80, 30));
 
-        jLabel3.setText("DURACION DE LA CARRERA");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 80, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setText("Seleccione el nadador que desea eliminar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(eliminar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(eliminar))
+        );
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+
+        reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reporte.png"))); // NOI18N
+        reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(reportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 520, -1, 140));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Reportes");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 490, -1, -1));
+
+        desempate.setText("jButton1");
+        desempate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desempateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(desempate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,17 +348,17 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 s = 0;
                 ++m;
             }
-            if (m == 60) {
-                m = 0;
-                ++h;
-            }
+//            if (m == 60) {
+//                m = 0;
+//                ++h;
+//            }
             actualizarLabel();
         }
 
     };
 
     private void actualizarLabel() {
-        String tiempo = (m <= 9 ? "0" : "") + m + ":" + (s <= 9 ? "0" : "") + s;
+        String tiempo = (m <= 9 ? "0" : "") + m + ":" + (s <= 9 ? "0" : "") + s + ":" + (cs <= 9 ? "0" : "") + cs;
         time.setText(tiempo);
     }
     private void nada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada3ActionPerformed
@@ -292,6 +368,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         JuegoPiscina.nadador3.setIcon(icono);
         bus = true;
         n3 = "3";
+        eliminar.setEnabled(true);
+        comboBox.addItem("Nadador 3");
     }//GEN-LAST:event_nada3ActionPerformed
 
     private void nada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada1ActionPerformed
@@ -301,6 +379,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         JuegoPiscina.nadador1.setIcon(icono);
         bus = true;
         n1 = "1";
+        eliminar.setEnabled(true);
+        comboBox.addItem("Nadador 1");
     }//GEN-LAST:event_nada1ActionPerformed
 
     private void nada2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada2ActionPerformed
@@ -310,6 +390,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         JuegoPiscina.nadador2.setIcon(icono);
         bus = true;
         n2 = "2";
+        eliminar.setEnabled(true);
+        comboBox.addItem("Nadador 2");
     }//GEN-LAST:event_nada2ActionPerformed
 
     private void nada4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada4ActionPerformed
@@ -319,6 +401,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         JuegoPiscina.nadador4.setIcon(icono);
         bus = true;
         n4 = "4";
+        eliminar.setEnabled(true);
+        comboBox.addItem("Nadador 4");
     }//GEN-LAST:event_nada4ActionPerformed
 
     private void nada5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada5ActionPerformed
@@ -328,10 +412,15 @@ public class JuegoPiscina extends javax.swing.JFrame {
         JuegoPiscina.nadador5.setIcon(icono);
         bus = true;
         n5 = "5";
+        eliminar.setEnabled(true);
+        comboBox.addItem("Nadador 5");
     }//GEN-LAST:event_nada5ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        if (comboBox.getItemAt(0) == null) {
+            eliminar.setEnabled(false);
+        }
         nueva.setEnabled(false);
         carrera.registrarNadador();
     }//GEN-LAST:event_formWindowOpened
@@ -356,6 +445,9 @@ public class JuegoPiscina extends javax.swing.JFrame {
         nada5.setEnabled(true);
         iniciar.setEnabled(true);
         nueva.setEnabled(false);
+        comboBox.removeAllItems();
+        comboBox.setEnabled(true);
+        eliminar.setEnabled(true);
         bus = false;
         n1 = "";
         n2 = "";
@@ -365,6 +457,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         t.stop();
         m = 0;
         s = 0;
+        cs = 0;
         actualizarLabel();
     }//GEN-LAST:event_nuevaActionPerformed
 
@@ -374,12 +467,12 @@ public class JuegoPiscina extends javax.swing.JFrame {
             t.start();
             JuegoPiscina.txtR.setText("TIEMPO DE CADA NADADOR");
             carrera.iniciar(n1, n2, n3, n4, n5);
-
             contcarreras++;
             System.out.println(contcarreras);
             iniciar.setEnabled(false);
             nueva.setEnabled(true);
-
+            comboBox.setEnabled(false);
+            eliminar.setEnabled(false);
         }
     }//GEN-LAST:event_iniciarActionPerformed
 
@@ -405,11 +498,61 @@ public class JuegoPiscina extends javax.swing.JFrame {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
 
+        if ("Nadador 1".equals(comboBox.getSelectedItem().toString())) {
+            nada1.setEnabled(true);
+            n1 = "";
+            comboBox.removeItem("Nadador 1");
+            nadador1.setIcon(null);
+        } else {
+            if ("Nadador 2".equals(comboBox.getSelectedItem().toString())) {
+                nada2.setEnabled(true);
+                n2 = "";
+                comboBox.removeItem("Nadador 2");
+                nadador2.setIcon(null);
+            } else {
+                if ("Nadador 3".equals(comboBox.getSelectedItem().toString())) {
+                    nada3.setEnabled(true);
+                    n3 = "";
+                    comboBox.removeItem("Nadador 3");
+                    nadador3.setIcon(null);
+                } else {
+                    if ("Nadador 4".equals(comboBox.getSelectedItem().toString())) {
+                        nada4.setEnabled(true);
+                        n4 = "";
+                        comboBox.removeItem("Nadador 4");
+                        nadador4.setIcon(null);
+                    } else {
+                        if ("Nadador 5".equals(comboBox.getSelectedItem().toString())) {
+                            nada5.setEnabled(true);
+                            n5 = "";
+                            comboBox.removeItem("Nadador 5");
+                            nadador5.setIcon(null);
+                        } else {
+                            
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void timeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_timeActionPerformed
+
+    private void reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesActionPerformed
+        // TODO add your handling code here:
+        Reportes reporte = new Reportes();
+        reporte.setVisible(true);
+        reporte.setLocationRelativeTo(null);
+    }//GEN-LAST:event_reportesActionPerformed
+
+    private void desempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desempateActionPerformed
+        // TODO add your handling code here:
+        miframe dados = new miframe();
+        dados.setLocationRelativeTo(null);
+        dados.setVisible(true);
+    }//GEN-LAST:event_desempateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -448,14 +591,19 @@ public class JuegoPiscina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back2;
     private javax.swing.JButton cerrar2;
+    private javax.swing.JComboBox<String> comboBox;
+    private javax.swing.JButton desempate;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JLabel lblLinea;
     private javax.swing.JButton nada1;
@@ -470,6 +618,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     public static javax.swing.JLabel nadador5;
     private javax.swing.JButton nueva;
     public static javax.swing.JLabel piscina;
+    private javax.swing.JButton reportes;
     public static javax.swing.JTextField time;
     public static javax.swing.JTextArea txtR;
     // End of variables declaration//GEN-END:variables
