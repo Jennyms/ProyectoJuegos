@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  *
  * @author jenni
  */
-public class JuegoPreguntas extends javax.swing.JFrame {
+public final class JuegoPreguntas extends javax.swing.JFrame {
 
     /**
      * Creates new form JuegoPreguntas
@@ -31,6 +31,7 @@ public class JuegoPreguntas extends javax.swing.JFrame {
     int position = 0;
     int movimientos = 0;
     String movimientos1 = String.valueOf(movimientos);
+    Integer[][] Matlog = new Integer[8][5];
 
     public JuegoPreguntas() {
         initComponents();
@@ -38,8 +39,8 @@ public class JuegoPreguntas extends javax.swing.JFrame {
         back.setContentAreaFilled(false);
         cerrar.setBorder(null);
         cerrar.setContentAreaFilled(false);
-                
         labels();
+        matriz();
     }
 
     public void labels() {
@@ -52,6 +53,7 @@ public class JuegoPreguntas extends javax.swing.JFrame {
                 labels[fila][columna].setBorder(border);
                 labels[fila][columna].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
                 jPanel1.add(labels[fila][columna], null);
+                Matlog[fila][columna] = 1;
                 x += 100;
             }
             y += 80;
@@ -59,7 +61,35 @@ public class JuegoPreguntas extends javax.swing.JFrame {
 
         }
         labels[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
-        labels[filas-1][columnas-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/meta.jpg")));
+        Matlog[0][0] = 3;
+        labels[filas - 1][columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/meta.jpg")));
+        Matlog[filas - 1][columnas - 1] = 4;
+    }
+
+    public void matriz() {
+        int v = (int) (Math.random() * 5) + 1;
+        int z = (int) (Math.random() * 8) + 1;
+//        Matlog[z][v] = 2;
+        labels[z][v].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comodin.jpg")));
+
+
+        int l = 1;
+        while (l <= 10) {
+            int w = (int) (Math.random() * 7) + 0;
+            int i = (int) (Math.random() * 4) + 0;
+            if (Matlog[w][i] == 1) {
+                Matlog[w][i] = 0;
+                labels[w][i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/obsta.jpg")));
+                l = l + 1;
+            }
+        }
+        for (int n = 0; n < Matlog.length; n++) {
+            for (int o = 0; o < Matlog[n].length; o++) {
+                System.out.print(Matlog[n][o]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 
     /**
@@ -259,100 +289,42 @@ public class JuegoPreguntas extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (evt.getExtendedKeyCode()) {
             case KeyEvent.VK_UP:
-                
-                if (KeyEvent.VK_UP == position) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else if (labels[x][y] == labels[0][y]) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else {
-
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/move.WAV"));
-//                    alert.play();
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                    x--;
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
-                    position = KeyEvent.VK_DOWN;
-
-                    break;
-                }
+                movimientos++;
+                move.setText(movimientos1);
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                x--;
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
+                position = KeyEvent.VK_DOWN;
+                break;
 
             case KeyEvent.VK_DOWN:
-                if (KeyEvent.VK_DOWN == position) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else if (labels[x][y] == labels[filas - 1][y]) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else {
-//                    
-//                    
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/move.WAV"));
-//                    alert.play();
+                movimientos++;
+                move.setText(movimientos1);
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                x++;
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
+                position = KeyEvent.VK_UP;
+                break;
 
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                    x++;
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
+            case KeyEvent.VK_RIGHT:
+                movimientos++;
+                move.setText(movimientos1);
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                y++;
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
+                position = KeyEvent.VK_LEFT;
+                break;
 
-                    position = KeyEvent.VK_UP;
-
-                    break;
-                }
-            case KeyEvent.VK_RIGHT:               
-                if (KeyEvent.VK_RIGHT == position) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else if (labels[x][y] == labels[x][columnas - 1]) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else {
-//                    
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/move.WAV"));
-//                    alert.play();
-
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                    y++;
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
-
-                    position = KeyEvent.VK_LEFT;
-
-                    break;
-                }
             case KeyEvent.VK_LEFT:
-                if (KeyEvent.VK_LEFT == position) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else if (labels[x][y] == labels[x][0]) {
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/error.wav"));
-//                    alert.play();
-                    break;
-                } else {
-//                    
-//                    alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/move.WAV"));
-//                    alert.play();
-                    movimientos++;
-
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                    y--;
-                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
-
-                    position = KeyEvent.VK_RIGHT;
-
-                    break;
-                }
+                movimientos++;
+                move.setText(movimientos1);
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                y--;
+                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
+                position = KeyEvent.VK_RIGHT;
+                break;
         }
         if (labels[x][y] == labels[filas - 1][columnas - 1]) {
-//            alert2.stop();
-//            alert = java.applet.Applet.newAudioClip(getClass().getResource("/icones/win.WAV"));
-//            alert.play();
             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
             Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
             JOptionPane.showMessageDialog(null, "GANASTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
