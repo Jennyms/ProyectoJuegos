@@ -9,8 +9,6 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import proyectojuegos.JuegoPiscina;
-import proyectojuegos.JuegoPreguntas;
 
 /**
  *
@@ -145,7 +143,8 @@ public class Juegos2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        //open the window to the swimming game and close the last window
         JuegoPiscina ventana = new JuegoPiscina();
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
@@ -154,7 +153,8 @@ public class Juegos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        //open the window to the quiz game and close the last window
         JuegoPreguntas preguntas1 = new JuegoPreguntas();
         preguntas1.setLocationRelativeTo(null);
         preguntas1.setVisible(true);
@@ -163,14 +163,15 @@ public class Juegos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+   
+        //this method change the foreground of the title
         natacion.setForeground(Color.white);
         preguntas.setForeground(Color.white);
         int velocidad = 2; //segundos
         Timer timer;
         TimerTask tarea;
 
-        int velmil = velocidad * 1000;
+        int velmil = velocidad * 400;
 
         tarea = new TimerTask() {
             @Override

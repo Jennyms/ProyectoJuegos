@@ -51,8 +51,6 @@ public class miframe extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         jLabel1.setText("DESEMPATE");
 
-        lblDado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1.png"))); // NOI18N
-
         lblD1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblD1.setText("0");
 
@@ -71,8 +69,6 @@ public class miframe extends javax.swing.JFrame {
                 btnTirarActionPerformed(evt);
             }
         });
-
-        lblDado2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/1.png"))); // NOI18N
 
         lblD2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblD2.setText("0");
@@ -133,7 +129,8 @@ public class miframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-        // TODO add your handling code here:
+  
+        //call the method for generated a random number to created a rotating dices 
         generanumero objDado = new generanumero();
         int dados = objDado.calculanumero();
         int dado2 = objDado.calculanumero2();
@@ -143,7 +140,8 @@ public class miframe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnJugarActionPerformed
 
     private void btnTirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTirarActionPerformed
-        // TODO add your handling code here:
+  
+        //call the method for generated a random number to choose the winner
         generanumero objDado = new generanumero();
         imagenesResul objImag1 = new imagenesResul();
         num1 = objDado.calculanumero();

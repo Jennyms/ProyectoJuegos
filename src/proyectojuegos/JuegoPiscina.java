@@ -11,6 +11,13 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import static proyectojuegos.hiloUno.nad1;
+import static proyectojuegos.hiloUno.nad2;
+import static proyectojuegos.hiloUno.nad3;
+import static proyectojuegos.hiloUno.nad4;
+import static proyectojuegos.hiloUno.nad5;
+
+import static proyectojuegos.hiloUno.tiempo2;
 
 /**
  *
@@ -28,6 +35,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
     String n5 = "";
     boolean bus = false;
     int contcarreras = 0;
+    int tiempo1 = 0;
+
+    int ganador1 = 0;
+    int ganador2 = 0;
+    int ganador3 = 0;
+    int ganador4 = 0;
+    int ganador5 = 0;
 
     public JuegoPiscina() {
         t = new Timer(10, acciones);
@@ -91,6 +105,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         reportes = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         desempate = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -330,6 +345,14 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         getContentPane().add(desempate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, -1, -1));
 
+        jButton1.setText("ganador");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -340,7 +363,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             ++cs;
-            if (cs == 100) {
+            if (cs == 90) {
                 cs = 0;
                 ++s;
             }
@@ -348,11 +371,11 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 s = 0;
                 ++m;
             }
-//            if (m == 60) {
-//                m = 0;
-//                ++h;
-//            }
             actualizarLabel();
+            if (tiempo1 == tiempo2) {
+                t.stop();
+                actualizarLabel();
+            }
         }
 
     };
@@ -360,6 +383,11 @@ public class JuegoPiscina extends javax.swing.JFrame {
     private void actualizarLabel() {
         String tiempo = (m <= 9 ? "0" : "") + m + ":" + (s <= 9 ? "0" : "") + s + ":" + (cs <= 9 ? "0" : "") + cs;
         time.setText(tiempo);
+    }
+
+    public void validarGanador() {
+        
+
     }
     private void nada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada3ActionPerformed
         // TODO add your handling code here:
@@ -370,6 +398,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n3 = "3";
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 3");
+        tiempo1++;
     }//GEN-LAST:event_nada3ActionPerformed
 
     private void nada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada1ActionPerformed
@@ -381,6 +410,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n1 = "1";
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 1");
+        tiempo1++;
     }//GEN-LAST:event_nada1ActionPerformed
 
     private void nada2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada2ActionPerformed
@@ -392,6 +422,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n2 = "2";
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 2");
+        tiempo1++;
     }//GEN-LAST:event_nada2ActionPerformed
 
     private void nada4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada4ActionPerformed
@@ -403,6 +434,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n4 = "4";
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 4");
+        tiempo1++;
     }//GEN-LAST:event_nada4ActionPerformed
 
     private void nada5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada5ActionPerformed
@@ -414,6 +446,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         n5 = "5";
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 5");
+        tiempo1++;
     }//GEN-LAST:event_nada5ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -468,11 +501,11 @@ public class JuegoPiscina extends javax.swing.JFrame {
             JuegoPiscina.txtR.setText("TIEMPO DE CADA NADADOR");
             carrera.iniciar(n1, n2, n3, n4, n5);
             contcarreras++;
-            System.out.println(contcarreras);
             iniciar.setEnabled(false);
             nueva.setEnabled(true);
             comboBox.setEnabled(false);
             eliminar.setEnabled(false);
+
         }
     }//GEN-LAST:event_iniciarActionPerformed
 
@@ -503,32 +536,35 @@ public class JuegoPiscina extends javax.swing.JFrame {
             n1 = "";
             comboBox.removeItem("Nadador 1");
             nadador1.setIcon(null);
+            tiempo1--;
         } else {
             if ("Nadador 2".equals(comboBox.getSelectedItem().toString())) {
                 nada2.setEnabled(true);
                 n2 = "";
                 comboBox.removeItem("Nadador 2");
                 nadador2.setIcon(null);
+                tiempo1--;
             } else {
                 if ("Nadador 3".equals(comboBox.getSelectedItem().toString())) {
                     nada3.setEnabled(true);
                     n3 = "";
                     comboBox.removeItem("Nadador 3");
                     nadador3.setIcon(null);
+                    tiempo1--;
                 } else {
                     if ("Nadador 4".equals(comboBox.getSelectedItem().toString())) {
                         nada4.setEnabled(true);
                         n4 = "";
                         comboBox.removeItem("Nadador 4");
                         nadador4.setIcon(null);
+                        tiempo1--;
                     } else {
                         if ("Nadador 5".equals(comboBox.getSelectedItem().toString())) {
                             nada5.setEnabled(true);
                             n5 = "";
                             comboBox.removeItem("Nadador 5");
                             nadador5.setIcon(null);
-                        } else {
-                            
+                            tiempo1--;
                         }
                     }
                 }
@@ -541,10 +577,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }//GEN-LAST:event_timeActionPerformed
 
     private void reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesActionPerformed
+
         // TODO add your handling code here:
-        Reportes reporte = new Reportes();
+        Reportes reporte = new Reportes(contcarreras);
         reporte.setVisible(true);
         reporte.setLocationRelativeTo(null);
+        reporte.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dispose();
     }//GEN-LAST:event_reportesActionPerformed
 
     private void desempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desempateActionPerformed
@@ -553,6 +592,11 @@ public class JuegoPiscina extends javax.swing.JFrame {
         dados.setLocationRelativeTo(null);
         dados.setVisible(true);
     }//GEN-LAST:event_desempateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        validarGanador();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -595,6 +639,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     private javax.swing.JButton desempate;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
