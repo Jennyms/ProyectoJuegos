@@ -6,6 +6,7 @@
 package proyectojuegos;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -40,7 +41,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         cerrar.setBorder(null);
         cerrar.setContentAreaFilled(false);
         labels();
-        matriz();
+        matrizLogica();
     }
 
     public void labels() {
@@ -66,23 +67,28 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         Matlog[filas - 1][columnas - 1] = 4;
     }
 
-    public void matriz() {
-        int v = (int) (Math.random() * 5) + 1;
-        int z = (int) (Math.random() * 8) + 1;
-//        Matlog[z][v] = 2;
-        labels[z][v].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comodin.jpg")));
-
-
+    public void matrizLogica() {
+        int p = 0;
         int l = 1;
         while (l <= 10) {
-            int w = (int) (Math.random() * 7) + 0;
-            int i = (int) (Math.random() * 4) + 0;
+            int w = (int) (Math.random() * 8) + 0;
+            int i = (int) (Math.random() * 5) + 0;
             if (Matlog[w][i] == 1) {
                 Matlog[w][i] = 0;
                 labels[w][i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/obsta.jpg")));
                 l = l + 1;
             }
         }
+        while (p < 1) {
+            int v = (int) (Math.random() * 5) + 0;
+            int z = (int) (Math.random() * 8) + 0;
+            if (Matlog[z][v] == 1) {
+                Matlog[z][v] = 2;
+                labels[z][v].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comodin.jpg")));
+                p++;
+            }
+        }
+
         for (int n = 0; n < Matlog.length; n++) {
             for (int o = 0; o < Matlog[n].length; o++) {
                 System.out.print(Matlog[n][o]);
@@ -90,6 +96,9 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
             System.out.println("");
         }
         System.out.println("");
+    }
+    public void Preguntas(){
+        ArrayList <String> preguntas= new ArrayList<>();
     }
 
     /**
@@ -289,40 +298,71 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (evt.getExtendedKeyCode()) {
             case KeyEvent.VK_UP:
-                movimientos++;
-                move.setText(movimientos1);
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                x--;
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
-                position = KeyEvent.VK_DOWN;
-                break;
+                if (labels[x][y] == labels[0][y]) {
+
+                    break;
+                } else {
+                    if (Matlog[x - 1][y] != 0 & Matlog[x - 1][y] != 2) {
+                        movimientos++;
+                        move.setText(String.valueOf(movimientos));
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                        x--;
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
+                        position = KeyEvent.VK_DOWN;
+                        break;
+                    }
+                    break;
+                }
 
             case KeyEvent.VK_DOWN:
-                movimientos++;
-                move.setText(movimientos1);
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                x++;
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
-                position = KeyEvent.VK_UP;
-                break;
+                if (labels[x][y] == labels[filas - 1][y]) {
+
+                    break;
+                } else {
+                    if (Matlog[x + 1][y] != 0 & Matlog[x + 1][y] != 2) {
+                        movimientos++;
+                        move.setText(String.valueOf(movimientos));
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                        x++;
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
+                        position = KeyEvent.VK_UP;
+                        break;
+                    }
+                    break;
+                }
 
             case KeyEvent.VK_RIGHT:
-                movimientos++;
-                move.setText(movimientos1);
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                y++;
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
-                position = KeyEvent.VK_LEFT;
-                break;
+                if (labels[x][y] == labels[x][columnas - 1]) {
+
+                    break;
+                } else {
+                    if (Matlog[x][y + 1] != 0 & Matlog[x][y + 1] != 2) {
+                        movimientos++;
+                        move.setText(String.valueOf(movimientos));
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                        y++;
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
+                        position = KeyEvent.VK_LEFT;
+                        break;
+                    }
+                    break;
+                }
 
             case KeyEvent.VK_LEFT:
-                movimientos++;
-                move.setText(movimientos1);
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                y--;
-                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
-                position = KeyEvent.VK_RIGHT;
-                break;
+                if (labels[x][y] == labels[x][0]) {
+                    break;
+                } else {
+                    if (Matlog[x][y - 1] != 0 & Matlog[x][y - 1] != 2) {
+                        movimientos++;
+                        move.setText(String.valueOf(movimientos));
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                        y--;
+                        labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
+                        position = KeyEvent.VK_RIGHT;
+                        break;
+                    }
+                    break;
+                }
         }
         if (labels[x][y] == labels[filas - 1][columnas - 1]) {
             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
