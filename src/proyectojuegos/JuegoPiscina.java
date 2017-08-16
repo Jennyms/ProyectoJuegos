@@ -8,14 +8,11 @@ package proyectojuegos;
 import desempate.miframe;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-import static proyectojuegos.hiloUno.nad1;
-import static proyectojuegos.hiloUno.nad2;
-import static proyectojuegos.hiloUno.nad3;
-import static proyectojuegos.hiloUno.nad4;
-import static proyectojuegos.hiloUno.nad5;
+
 
 import static proyectojuegos.hiloUno.tiempo2;
 
@@ -42,7 +39,14 @@ public class JuegoPiscina extends javax.swing.JFrame {
     int ganador3 = 0;
     int ganador4 = 0;
     int ganador5 = 0;
-
+    
+    int perdedor1=0;
+    int perdedor2=0;
+    int perdedor3=0;
+    int perdedor4=0;
+    int perdedor5=0;
+    
+    public static ArrayList listacomp= new ArrayList<>();
     public JuegoPiscina() {
         t = new Timer(10, acciones);
         initComponents();
@@ -357,7 +361,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private Timer t;
-    private int h, m, s, cs;
+    private int  m, s, cs;
     private ActionListener acciones = new ActionListener() {
 
         @Override
@@ -386,7 +390,9 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }
 
     public void validarGanador() {
-        
+        System.out.println(listacomp);
+        System.out.println(listacomp.get(0));
+        System.out.println(listacomp.get(listacomp.size()-1));
 
     }
     private void nada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada3ActionPerformed
@@ -399,6 +405,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 3");
         tiempo1++;
+        
     }//GEN-LAST:event_nada3ActionPerformed
 
     private void nada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada1ActionPerformed

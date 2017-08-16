@@ -7,6 +7,7 @@ package proyectojuegos;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -103,7 +104,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
     public void preguntas() {
         
-
+        
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 Preguntas.preguntas[13],
@@ -117,11 +118,10 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         if (seleccion != -1) {
             if ((seleccion + 1) == 1) {
                 System.out.println("True");
-            }else{
+            } else {
                 System.out.println("False");
             }
         }
-        
 
     }
 

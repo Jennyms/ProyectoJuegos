@@ -8,6 +8,7 @@ package Cronometro;
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -19,16 +20,17 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
      * Creates new form Tempo
      */
     Thread h1, t;
-    int n1 = 1, n2 = 1, n3 = 1;
+    int n1 = 0, n2 = 0, n3 = 0;
     int i = 60;
     Random r = new Random();
-    boolean bus= true;
+    boolean bus = true;
+
     public Tempo() {
         initComponents();
         h1 = new Thread(this);
         jSpinner1.setEnabled(false);
         jSpinner2.setEnabled(false);
-        jSpinner3.setEnabled(false); 
+        jSpinner3.setEnabled(false);
     }
 
     public void run() {
@@ -94,6 +96,11 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/reloj-de-arena-listo-para-empezar.png"))); // NOI18N
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -237,22 +244,45 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        if(bus){
-        run();
-        h1.start();
+        if (bus) {
+            run();
+            h1.start();
+            jButton1.setEnabled(true);
+            jToggleButton1.setEnabled(false);
+           SpinnerNumberModel model = new SpinnerNumberModel(
+                    new Integer(0), // Dato visualizado al inicio en el spinner 
+                    new Integer(0), // Límite inferior 
+                    new Integer(9), // Límite superior 
+                    new Integer(1) // incremento-decremento 
+            );
+            SpinnerNumberModel model1 = new SpinnerNumberModel(
+                    new Integer(0), // Dato visualizado al inicio en el spinner 
+                    new Integer(0), // Límite inferior 
+                    new Integer(9), // Límite superior 
+                    new Integer(1) // incremento-decremento 
+            );
+            SpinnerNumberModel model2 = new SpinnerNumberModel(
+                    new Integer(0), // Dato visualizado al inicio en el spinner 
+                    new Integer(0), // Límite inferior 
+                    new Integer(9), // Límite superior 
+                    new Integer(1) // incremento-decremento 
+            );
 
-        // numero al alzar para desactivar clave
-        n1 = r.nextInt(10);
-        n2 = r.nextInt(10);
-        n3 = r.nextInt(10);
+            jSpinner1.setModel(model);
+            jSpinner2.setModel(model1);
+            jSpinner3.setModel(model2);
+            // numero al alzar para desactivar clave
+            n1 = r.nextInt(9)+1;
+            n2 = r.nextInt(9)+1;
+            n3 = r.nextInt(9)+1;
 
-        // habilitar spinner
-        jSpinner1.setEnabled(true);
-        jSpinner2.setEnabled(true);
-        jSpinner3.setEnabled(true);
+            // habilitar spinner
+            jSpinner1.setEnabled(true);
+            jSpinner2.setEnabled(true);
+            jSpinner3.setEnabled(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja1.png")));
-        bus=false;
+            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja1.png")));
+            bus = false;
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -267,19 +297,24 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja2.png")));
             JOptionPane.showMessageDialog(null, "Caja fuerte desactivada");
             dispose();
-           
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,n1+"-"+n2+"-"+n3);
+        JOptionPane.showMessageDialog(null, n1 + "-" + n2 + "-" + n3);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null,"Mover el spinner del 1 al 10 y desactivar la caja antes de que termine el tiempo");
+        JOptionPane.showMessageDialog(null, "Mover el spinner del 1 al 9 y desactivar la caja antes de que termine el tiempo");
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        jButton1.setEnabled(false);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

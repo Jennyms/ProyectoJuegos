@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import static proyectojuegos.JuegoPiscina.listacomp;
 
 /**
  *
@@ -77,6 +78,9 @@ public class hiloUno extends Thread {
                         carrera.losNadadores[0].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #1: " + carrera.losNadadores[0].getTiempo() + " segundos");
                         nad1 = (int) tt; 
+                        if(nad1!=0){
+                            listacomp.add("Nadador 1");
+                        }
                         j = 120;
                     } else {
                         j++;
@@ -124,6 +128,9 @@ public class hiloUno extends Thread {
                         carrera.losNadadores[1].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #2: " + carrera.losNadadores[1].getTiempo() + " segundos");
                         nad2 = (int) tt;
+                        if(nad2!=0){
+                            listacomp.add("Nadador 2");
+                        }
                         tiempo2++;
                         j = 120;
                     } else {
@@ -173,6 +180,9 @@ public class hiloUno extends Thread {
                         carrera.losNadadores[2].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #3: " + carrera.losNadadores[2].getTiempo() + " segundos");
                         nad3 = (int) tt;
+                        if(nad3!=0){
+                            listacomp.add("Nadador 3");
+                        }
                         tiempo2++;
                         j = 120;
                     } else {
@@ -222,6 +232,9 @@ public class hiloUno extends Thread {
                         carrera.losNadadores[3].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #4: " + carrera.losNadadores[3].getTiempo() + " segundos");
                         nad4 = (int) tt;
+                        if(nad4!=0){
+                            listacomp.add("Nadador 4");
+                        }
                         tiempo2++;
                         j = 120;
                     } else {
@@ -270,6 +283,9 @@ public class hiloUno extends Thread {
                         carrera.losNadadores[4].setTiempo(tt);
                         JuegoPiscina.txtR.append("\n" + "Nadador #5: " + carrera.losNadadores[4].getTiempo() + " segundos");
                         nad5 = (int) tt;
+                        if(nad5!=0){
+                            listacomp.add("Nadador 5");
+                        }
                         tiempo2++;
                         j = 120;
                     } else {
