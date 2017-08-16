@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -42,6 +43,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         cerrar.setContentAreaFilled(false);
         labels();
         matrizLogica();
+        preguntas();
+
     }
 
     public void labels() {
@@ -97,8 +100,29 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         }
         System.out.println("");
     }
-    public void Preguntas(){
-        ArrayList <String> preguntas= new ArrayList<>();
+
+    public void preguntas() {
+        
+
+        int seleccion = JOptionPane.showOptionDialog(
+                null,
+                Preguntas.preguntas[13],
+                "Selector de opciones",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, // null para icono por defecto.
+                new Object[]{"True", "False"}, // null para YES, NO y CANCEL
+                "");
+
+        if (seleccion != -1) {
+            if ((seleccion + 1) == 1) {
+                System.out.println("True");
+            }else{
+                System.out.println("False");
+            }
+        }
+        
+
     }
 
     /**
