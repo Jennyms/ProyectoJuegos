@@ -5,12 +5,18 @@
  */
 package proyectojuegos;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
+
 import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -27,7 +33,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
      */
     int filas = 8;
     int columnas = 5;
-    Labels[][] labels = new Labels[filas][columnas];
+    Labels[][] labels;
     Border border = LineBorder.createBlackLineBorder();
     int x = 0; //row
     int y = 0; //column
@@ -51,7 +57,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     public void labels() {
         int x = 20;
         int y = 20;
-
+        labels = new Labels[filas][columnas];
         for (int fila = 0; fila < filas; fila++) {
             for (int columna = 0; columna < columnas; columna++) {
                 labels[fila][columna] = new Labels(x, y, 100, 80);
@@ -59,6 +65,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                 labels[fila][columna].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
                 jPanel1.add(labels[fila][columna], null);
                 Matlog[fila][columna] = 1;
+
                 x += 100;
             }
             y += 80;
@@ -71,6 +78,53 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         Matlog[filas - 1][columnas - 1] = 4;
     }
 
+    private class ButtonController implements MouseListener {
+
+        public void actionPerformed(ActionEvent e) {
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            for (int i = 0; i < filas; i++) {
+                for (int k = 0; k < columnas; k++) {
+                    if (e.getSource().equals(labels[i][k])) {
+                        labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                        Matlog[i][k] = 1;
+
+                    }
+                }
+            }
+            for (int n = 0; n < Matlog.length; n++) {
+                for (int o = 0; o < Matlog[n].length; o++) {
+                    System.out.print(Matlog[n][o]);
+                }
+                System.out.println("");
+            }
+            System.out.println("");
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+
     public void matrizLogica() {
         int p = 0;
         int l = 1;
@@ -78,7 +132,10 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
             int w = (int) (Math.random() * 8) + 0;
             int i = (int) (Math.random() * 5) + 0;
             if (Matlog[w][i] == 1) {
+                ButtonController bt = new ButtonController();
+                labels[w][i].addMouseListener(bt);
                 Matlog[w][i] = 0;
+
                 labels[w][i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/obsta.jpg")));
                 l = l + 1;
             }
@@ -103,8 +160,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     }
 
     public void preguntas() {
-        
-        
+
         int seleccion = JOptionPane.showOptionDialog(
                 null,
                 Preguntas.preguntas[13],
