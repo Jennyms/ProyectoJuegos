@@ -21,6 +21,7 @@ public class Main {
         Juegos2 view = new Juegos2();
         view.setLocationRelativeTo(null);
         view.setVisible(true);  
+        //open the window
     }
     
 }

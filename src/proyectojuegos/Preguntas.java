@@ -10,8 +10,8 @@ package proyectojuegos;
  * @author jenni
  */
 public class Preguntas {
-
     //Questions for the quiz game
+    
     public static String[] preguntas = new String[]{
         /*0*/"¿if, else, for y while son sentencias de control?",
         /*1*/ "¿Qué es un algoritmo?\n"

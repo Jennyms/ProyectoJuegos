@@ -12,6 +12,7 @@ package proyectojuegos;
 public class Respuestas {
 
     //Answers for the quiz game
+    
     public static String[] respuestas = new String[]{
         /*0*/"true",
         /*1*/ "true",
