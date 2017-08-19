@@ -180,13 +180,13 @@ public class Juegos2 extends javax.swing.JFrame {
                 switch (contador) {
                     case 0:
                         contador = 1;
-                        natacion.setForeground(Color.black);
+                        natacion.setForeground(Color.black);//It changes to black color
                         preguntas.setForeground(Color.black);
                         break;
                     case 1:
                         contador = 0;
                         natacion.setForeground(Color.white);
-                        preguntas.setForeground(Color.white);
+                        preguntas.setForeground(Color.white);//It changes to white color
                         break;
 
                 }

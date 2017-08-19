@@ -66,10 +66,10 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
                 jSpinner2.setEnabled(false);//It disables the spinner
                 jSpinner3.setEnabled(false);//It disables the spinner
                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja1.png")));
-                Tempo temporizador=new Tempo();
-               JOptionPane.showMessageDialog(null, "Se te acabó el tiempo\nPerdiste!");
+                JOptionPane.showMessageDialog(null, "Se te acabó el tiempo\nPerdiste!");
+                dispose();
                 h1.suspend();//suspend the time(thread)
-                
+
             }
             try {
                 Thread.sleep(1000);
@@ -259,7 +259,7 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             h1.start();//It initiates the thread
             jButton1.setEnabled(true);//enables the button of opening the strong box
             jToggleButton1.setEnabled(false);//blocked the start button
-           SpinnerNumberModel model = new SpinnerNumberModel(
+            SpinnerNumberModel model = new SpinnerNumberModel(
                     new Integer(0), //Information visualized to the beginning in the spinner 
                     new Integer(0), //Lower limit 
                     new Integer(9), //Upper limit
@@ -282,9 +282,9 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             jSpinner2.setModel(model1);
             jSpinner3.setModel(model2);
             //random number for deactivating the password 
-            n1 = r.nextInt(9)+1;
-            n2 = r.nextInt(9)+1;
-            n3 = r.nextInt(9)+1;
+            n1 = r.nextInt(9) + 1;
+            n2 = r.nextInt(9) + 1;
+            n3 = r.nextInt(9) + 1;
 
             // enable spinner
             jSpinner1.setEnabled(true);
@@ -308,13 +308,12 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(null, "Caja fuerte desactivada\n\nGanaste Automaticamente");
             dispose();
             JuegoPreguntas.labels[JuegoPreguntas.x][JuegoPreguntas.y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-            JuegoPreguntas.labels[JuegoPreguntas.filas-1][JuegoPreguntas.columnas-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));;
+            JuegoPreguntas.labels[JuegoPreguntas.filas - 1][JuegoPreguntas.columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-//        JOptionPane.showMessageDialog(null, n1 + "-" + n2 + "-" + n3);//It shows the password for test
+//          JOptionPane.showMessageDialog(null, n1 + "-" + n2 + "-" + n3);//It shows the password for test
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

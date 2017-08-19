@@ -6,6 +6,7 @@ package proyectojuegos;
  * and open the template in the editor.
  */
 import desempate.miframe;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,7 +22,9 @@ import static proyectojuegos.hiloUno.tiempo2;
  * @author jenni
  */
 public class JuegoPiscina extends javax.swing.JFrame {
+    
 
+   
     /**
      * Creates new form JuegoPiscina
      */
@@ -48,6 +51,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     
     public static ArrayList listacomp= new ArrayList<>();
     public JuegoPiscina() {
+        this.getContentPane().setBackground(new java.awt.Color(238,232,170));
         t = new Timer(10, acciones);
         initComponents();
         back2.setBorder(null);
@@ -112,6 +116,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -138,6 +143,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         });
         getContentPane().add(cerrar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 10, 50, -1));
 
+        jPanel1.setBackground(new java.awt.Color(238, 232, 170));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, -70, -1, 480));
         jPanel1.add(nadador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 110, 80));
@@ -467,12 +473,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     private void nuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaActionPerformed
         // TODO add your handling code here:
-//        carrera.reiniciar();
-//        nadador1.setLocation(carrera.losNadadores[0].getCoorX(), carrera.losNadadores[0].getCoorY());
-//        nadador2.setLocation(carrera.losNadadores[1].getCoorX(), carrera.losNadadores[1].getCoorY());
-//        nadador3.setLocation(carrera.losNadadores[2].getCoorX(), carrera.losNadadores[2].getCoorY());
-//        nadador4.setLocation(carrera.losNadadores[3].getCoorX(), carrera.losNadadores[3].getCoorY());
-//        nadador5.setLocation(carrera.losNadadores[4].getCoorX(), carrera.losNadadores[4].getCoorY());
         nadador1.setIcon(null);
         nadador2.setIcon(null);
         nadador3.setIcon(null);

@@ -7,6 +7,7 @@ package proyectojuegos;
 
 import Cronometro.Tempo;
 import java.applet.AudioClip;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -37,7 +38,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     int puntosPerdidos = 0;
     int movimientos = 0;
     boolean bus = false;
-    boolean busempezar = false;
+    boolean busempezar = false; 
     Integer[][] Matlog = new Integer[8][5];//object of the logic matrix
     AudioClip alert;
 
@@ -45,8 +46,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         initComponents();
         x = 0;
         y = 0;
-        puntosGanados = 0;
-        puntosPerdidos = 0;
+        puntosGanados = 0;//gotten points 
+        puntosPerdidos = 0;//lost points 
         movimientos = 0;
         bus = false;
         busempezar = false;
@@ -56,7 +57,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         cerrar.setContentAreaFilled(false);
         labels();
         matrizLogica();
-
+        jPanel1.setBackground(Color.gray);
     }
 
     public void labels() {
@@ -81,6 +82,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         Matlog[0][0] = 3;//value of the gamer
         labels[filas - 1][columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/meta.jpg")));//icon of the final position
         Matlog[filas - 1][columnas - 1] = 4;//value of the final position
+
     }
 
     private class ButtonController implements MouseListener {
@@ -90,22 +92,22 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            while (bus) {
+            while (bus) {//Until the person has removed the obstacle it stops realizing this condition
                 for (int i = 0; i < filas; i++) {
                     for (int k = 0; k < columnas; k++) {
-                        if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 2) {
-                            labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            Matlog[i][k] = 1;
-                            bus = false;
-                            busempezar = true;
-                            Tempo temporizador = new Tempo();
+                        if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 2){//When the person selects the wildcard
+                            labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));//change the background
+                            Matlog[i][k] = 1;//It changes the value of the wildcard 
+                            bus = false;//this line makes the action not to happen again
+                            busempezar = true;//enable the play button
+                            Tempo temporizador = new Tempo();//open the wildcard window
                             temporizador.setVisible(true);
                             temporizador.setLocationRelativeTo(null);
-                        } else if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 0) {
-                            labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            Matlog[i][k] = 1;
-                            bus = false;
-                            busempezar = true;
+                        } else if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 0) {//When the person selects
+                            labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));//change the background
+                            Matlog[i][k] = 1;//It changes the value of the obstacle
+                            bus = false;//this line makes the action not to happen again
+                            busempezar = true;//enable the play button
                         }
                     }
                 }
@@ -147,23 +149,32 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         while (l <= 10) {
             int w = (int) (Math.random() * 8) + 0;//generte a random for take a impedimentum position
             int i = (int) (Math.random() * 5) + 0;
-            if (Matlog[w][i] == 1) {
-                ButtonController bt = new ButtonController();//method that make labels action
-                labels[w][i].addMouseListener(bt);//add mouse action
-                Matlog[w][i] = 0;//value of impedimentum
-                labels[w][i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/obsta.jpg")));//and add icon for each one of them
-                l = l + 1;
+            if (w != 0 || i != 1) {
+                if (w != 1 || i != 0) {
+                    if (Matlog[w][i] == 1) {
+                        ButtonController bt = new ButtonController();//method that make labels action
+                        labels[w][i].addMouseListener(bt);//add mouse action
+                        Matlog[w][i] = 0;//value of impedimentum
+                        labels[w][i].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/obsta.jpg")));//and add icon for each one of them
+                        l = l + 1;
+                    }
+                }
             }
         }
         while (p < 1) {
-            int v = (int) (Math.random() * 5) + 0;//generte a random for take a wildcard position
             int z = (int) (Math.random() * 8) + 0;
-            if (Matlog[z][v] == 1) {
-                ButtonController bt = new ButtonController();//method that make labels action
-                labels[z][v].addMouseListener(bt);//add mouse action
-                Matlog[z][v] = 2;//value of wildcard
-                labels[z][v].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comodin.jpg")));//add icon for it
-                p++;
+            int v = (int) (Math.random() * 5) + 0;//generte a random for take a wildcard position
+
+            if (z != 0 || v != 1) {
+                if (z != 1 || v != 0) {
+                    if (Matlog[z][v] == 1) {
+                        ButtonController bt = new ButtonController();//method that make labels action
+                        labels[z][v].addMouseListener(bt);//add mouse action
+                        Matlog[z][v] = 2;//value of wildcard
+                        labels[z][v].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comodin.jpg")));//add icon for it
+                        p++;
+                    }
+                }
             }
         }
 
@@ -204,8 +215,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         if (Respuestas.respuestas[posi].equals(respuesta)) {
             puntosGanados++;
             ganados.setText(String.valueOf(puntosGanados));
-            bus = true;
-            busempezar = false;
+            bus = true;////enable the MouseEvent
+            busempezar = false;//disable the play button
             JOptionPane.showMessageDialog(null, "A acertado la pregunta, elimine un obstáculo\npara continuar respondiendo");
         } else {
             puntosPerdidos++;
@@ -222,7 +233,10 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                     a++;
                 }
             }
-            bus = false;
+            bus = false;//disable the MouseEvent
+            //en medio de 4 obstaculos
+            
+            
         }
 
     }
@@ -440,6 +454,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
+        
+        //open the window to the quiz game and close the last window
         Juegos2 ventana = new Juegos2();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
@@ -454,7 +470,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        busempezar = true;
+        busempezar = true;//enable the play button
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
@@ -470,41 +487,13 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             movimientos++;
                             move.setText(String.valueOf(movimientos));
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                            Matlog[x][y] = 1;
                             x--;
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
+                            Matlog[x][y] = 3;
                             preguntas();
                             break;
                         } else if (Matlog[x - 1][y] == 0) {
-                            movimientos++;
-                            move.setText(String.valueOf(movimientos));
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            x--;
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/des.jpg")));
-                            alert = java.applet.Applet.newAudioClip(getClass().getResource("/icon/bomba.wav"));
-                            alert.play();
-                            Icon imagen = new ImageIcon(getClass().getResource("/icon/triste.png"));
-                            int seleccion = JOptionPane.showOptionDialog(
-                                    null,
-                                    "PERDISTE",
-                                    "Selector de opciones",
-                                    JOptionPane.YES_NO_CANCEL_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    imagen, //icon.
-                                    new Object[]{"Nueva Partida"}, // null para YES, NO y CANCEL
-                                    "");
-                            if (seleccion == -1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            } else if ((seleccion + 1) == 1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            }
                             break;
                         } else if (Matlog[x - 1][y] == 2) {
                             break;
@@ -521,41 +510,14 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             movimientos++;
                             move.setText(String.valueOf(movimientos));
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                            Matlog[x][y] = 1;
                             x++;
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
+                            Matlog[x][y] = 3;
                             preguntas();
                             break;
                         } else if (Matlog[x + 1][y] == 0) {
-                            movimientos++;
-                            move.setText(String.valueOf(movimientos));
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            x++;
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));
-                            alert = java.applet.Applet.newAudioClip(getClass().getResource("/icon/bomba.wav"));
-                            alert.play();
-                            Icon imagen = new ImageIcon(getClass().getResource("/icon/triste.png"));
-                            int seleccion = JOptionPane.showOptionDialog(
-                                    null,
-                                    "PERDISTE",
-                                    "Selector de opciones",
-                                    JOptionPane.YES_NO_CANCEL_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    imagen, // null para icono por defecto.
-                                    new Object[]{"Nueva Partida"}, // null para YES, NO y CANCEL
-                                    "");
-                            if (seleccion == -1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            } else if ((seleccion + 1) == 1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            }
+
                             break;
                         } else if (Matlog[x + 1][y] == 2) {
                             break;
@@ -566,7 +528,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             x++;
                             if (puntosGanados > puntosPerdidos) {
                                 int puntosextra = puntosGanados - puntosPerdidos;
-                                if (puntosextra > 3) {
+                                if (puntosextra >= 3) {
                                     labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
                                     Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
                                     busempezar = false;
@@ -578,7 +540,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                                 labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/triste.png")));
                                 Icon imagen = new ImageIcon(getClass().getResource("/icon/gameover.png"));
                                 busempezar = false;
-                                JOptionPane.showMessageDialog(null, "Perdio", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+                                JOptionPane.showMessageDialog(null, "PERDIÓ", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
 
                             }
                             break;
@@ -594,41 +556,14 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             movimientos++;
                             move.setText(String.valueOf(movimientos));
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                            Matlog[x][y] = 1;
                             y++;
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
+                            Matlog[x][y] = 3;
                             preguntas();
                             break;
                         } else if (Matlog[x][y + 1] == 0) {
-                            movimientos++;
-                            move.setText(String.valueOf(movimientos));
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            y++;
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/derecho.jpg")));
-                            alert = java.applet.Applet.newAudioClip(getClass().getResource("/icon/bomba.wav"));
-                            alert.play();
-                            Icon imagen = new ImageIcon(getClass().getResource("/icon/triste.png"));
-                            int seleccion = JOptionPane.showOptionDialog(
-                                    null,
-                                    "PERDISTE",
-                                    "Selector de opciones",
-                                    JOptionPane.YES_NO_CANCEL_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    imagen, // null para icono por defecto.
-                                    new Object[]{"Nueva Partida"}, // null para YES, NO y CANCEL
-                                    "");
-                            if (seleccion == -1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            } else if ((seleccion + 1) == 1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            }
+
                             break;
                         } else if (Matlog[x][y + 1] == 2) {
                             break;
@@ -637,9 +572,23 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             move.setText(String.valueOf(movimientos));
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
                             y++;
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
-                            Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
-                            JOptionPane.showMessageDialog(null, "GANASTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+                            if (puntosGanados > puntosPerdidos) {
+                                int puntosextra = puntosGanados - puntosPerdidos;
+                                if (puntosextra >= 3) {
+                                    labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
+                                    Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
+                                    busempezar = false;
+                                    JOptionPane.showMessageDialog(null, "GANASTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+                                    break;
+                                }
+                                break;
+                            } else {
+                                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/triste.png")));
+                                Icon imagen = new ImageIcon(getClass().getResource("/icon/gameover.png"));
+                                busempezar = false;
+                                JOptionPane.showMessageDialog(null, "PERDIÓ", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+
+                            }
                             break;
                         }
                     }
@@ -652,41 +601,13 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             movimientos++;
                             move.setText(String.valueOf(movimientos));
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
+                            Matlog[x][y] = 1;
                             y--;
                             labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
+                            Matlog[x][y] = 3;
                             preguntas();
                             break;
                         } else if (Matlog[x][y - 1] == 0) {
-                            movimientos++;
-                            move.setText(String.valueOf(movimientos));
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-                            y--;
-                            labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/izquierda.jpg")));
-                            alert = java.applet.Applet.newAudioClip(getClass().getResource("/icon/bomba.wav"));
-                            alert.play();
-                            Icon imagen = new ImageIcon(getClass().getResource("/icon/triste.png"));
-                            int seleccion = JOptionPane.showOptionDialog(
-                                    null,
-                                    "PERDISTE",
-                                    "Selector de opciones",
-                                    JOptionPane.YES_NO_CANCEL_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE,
-                                    imagen, // null para icono por defecto.
-                                    new Object[]{"Nueva Partida"}, // null para YES, NO y CANCEL
-                                    "");
-                            if (seleccion == -1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            } else if ((seleccion + 1) == 1) {
-                                JuegoPreguntas preguntas = new JuegoPreguntas();
-                                preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                dispose();
-                                preguntas.setLocationRelativeTo(null);
-                                preguntas.setVisible(true);
-                            }
 
                             break;
                         } else if (Matlog[x][y - 1] == 2) {
@@ -699,7 +620,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
     private void playagainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playagainActionPerformed
         // TODO add your handling code here:
-
         JuegoPreguntas preguntas = new JuegoPreguntas();
         preguntas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         dispose();

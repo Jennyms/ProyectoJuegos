@@ -13,15 +13,14 @@ public class nadador {
 // this variables are private for them to be modified
     private int coorX, coorY, velocidad, avance;
     private long tiempo;
-    private String nombre;
+//    private String nombre;
 
     public nadador(int codigo, int coorX, int coorY, long tiempo, int velocidad, String nombre) {
-//        this.codigo = codigo;
         this.coorX = coorX;
         this.coorY = coorY;
         this.tiempo = tiempo;
         this.velocidad = velocidad;
-        this.nombre = nombre;
+//        this.nombre = nombre;
     }
 // this method return the progress that the swimmer is having
     public int getAvance() {
@@ -47,19 +46,19 @@ public class nadador {
     public void setCoorY(int coorY) {
         this.coorY = coorY;
     }
-
+//this method get and return the time of each swimmer
     public long getTiempo() {
         return tiempo;
     }
-
+//this method set and return the time of each swimmer
     public void setTiempo(long tiempo) {
         this.tiempo = tiempo;
     }
-
+//this method get and return the swimming speed of each swimmer 
     public int getVelocidad() {
         return velocidad;
     }
-
+//this method set and return the swimming speed of each swimmer
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }  
