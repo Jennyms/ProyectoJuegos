@@ -6,14 +6,12 @@ package proyectojuegos;
  * and open the template in the editor.
  */
 import desempate.miframe;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
-
 
 import static proyectojuegos.hiloUno.tiempo2;
 
@@ -22,9 +20,7 @@ import static proyectojuegos.hiloUno.tiempo2;
  * @author jenni
  */
 public class JuegoPiscina extends javax.swing.JFrame {
-    
 
-   
     /**
      * Creates new form JuegoPiscina
      */
@@ -34,24 +30,27 @@ public class JuegoPiscina extends javax.swing.JFrame {
     String n4 = "";
     String n5 = "";
     boolean bus = false;
-    int contcarreras = 0;
-    int tiempo1 = 0;
 
-    int ganador1 = 0;
-    int ganador2 = 0;
-    int ganador3 = 0;
-    int ganador4 = 0;
-    int ganador5 = 0;
-    
-    int perdedor1=0;
-    int perdedor2=0;
-    int perdedor3=0;
-    int perdedor4=0;
-    int perdedor5=0;
-    
-    public static ArrayList listacomp= new ArrayList<>();
+    int tiempo1 = 0;
+    public static int contcarreras = 0;
+    public static int ganador1 = 0;
+    public static int ganador2 = 0;
+    public static int ganador3 = 0;
+    public static int ganador4 = 0;
+    public static int ganador5 = 0;
+
+    public static int perdedor1 = 0;
+    public static int perdedor2 = 0;
+    public static int perdedor3 = 0;
+    public static int perdedor4 = 0;
+    public static int perdedor5 = 0;
+    public static String perdidomas = "";
+    public static String ganadomas = "";
+
+    public static ArrayList listacomp = new ArrayList<>();
+
     public JuegoPiscina() {
-        this.getContentPane().setBackground(new java.awt.Color(238,232,170));
+        this.getContentPane().setBackground(new java.awt.Color(238, 232, 170));
         t = new Timer(10, acciones);
         initComponents();
         back2.setBorder(null);
@@ -367,7 +366,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private Timer t;
-    private int  m, s, cs;
+    private int m, s, cs;
     private ActionListener acciones = new ActionListener() {
 
         @Override
@@ -384,7 +383,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
             actualizarLabel();
             if (tiempo1 == tiempo2) {
                 t.stop();
+                validarGanador();
+                validarPerdedor();
+                perdidoMasVeces();
+                ganadoMasVeces();
                 actualizarLabel();
+                nueva.setEnabled(true);
+
             }
         }
 
@@ -396,10 +401,62 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }
 
     public void validarGanador() {
-        System.out.println(listacomp);
-        System.out.println(listacomp.get(0));
-        System.out.println(listacomp.get(listacomp.size()-1));
+        System.out.println("GANADOR: " + listacomp.get(0));
+        if (listacomp.get(0) == "Nadador 1") {
+            ganador1++;
+        } else if (listacomp.get(0) == "Nadador 2") {
+            ganador2++;
+        } else if (listacomp.get(0) == "Nadador 3") {
+            ganador3++;
+        } else if (listacomp.get(0) == "Nadador 4") {
+            ganador4++;
+        } else if (listacomp.get(0) == "Nadador 5") {
+            ganador5++;
+        }
+    }
 
+    public void validarPerdedor() {
+        System.out.println("PERDEDOR:" + listacomp.get(listacomp.size() - 1));
+        if (listacomp.get(listacomp.size() - 1) == "Nadador 1") {
+            perdedor1++;
+        } else if (listacomp.get(listacomp.size() - 1) == "Nadador 2") {
+            perdedor2++;
+        } else if (listacomp.get(listacomp.size() - 1) == "Nadador 3") {
+            perdedor3++;
+        } else if (listacomp.get(listacomp.size() - 1) == "Nadador 4") {
+            perdedor4++;
+        } else if (listacomp.get(listacomp.size() - 1) == "Nadador 5") {
+            perdedor5++;
+        }
+
+    }
+
+    public void perdidoMasVeces() {
+        if (perdedor1 > perdedor2 & perdedor1 > perdedor3 & perdedor1 > perdedor4 & perdedor1 > perdedor5) {
+            perdidomas = "NADADOR 1";
+        } else if (perdedor2 > perdedor1 & perdedor2 > perdedor3 & perdedor2 > perdedor4 & perdedor2 > perdedor5) {
+            perdidomas = "NADADOR 2";
+        } else if (perdedor3 > perdedor1 & perdedor3 > perdedor2 & perdedor3 > perdedor4 & perdedor3 > perdedor5) {
+            perdidomas = "NADADOR 3";
+        } else if (perdedor4 > perdedor1 & perdedor4 > perdedor3 & perdedor4 > perdedor2 & perdedor4 > perdedor5) {
+            perdidomas = "NADADOR 4";
+        } else if (perdedor5 > perdedor1 & perdedor5 > perdedor3 & perdedor5 > perdedor4 & perdedor5 > perdedor2) {
+            perdidomas = "NADADOR 5";
+        }
+    }
+
+    public void ganadoMasVeces() {
+        if (ganador1 > ganador2 & ganador1 > ganador3 & ganador1 > ganador4 & ganador1 > ganador5) {
+            ganadomas = "NADADOR 1";
+        } else if (ganador2 > ganador1 & ganador2 > ganador3 & ganador2 > ganador4 & ganador2 > ganador5) {
+            ganadomas = "NADADOR 2";
+        } else if (ganador3 > ganador1 & ganador3 > ganador2 & ganador3 > ganador4 & ganador3 > ganador5) {
+            ganadomas = "NADADOR 3";
+        } else if (ganador4 > ganador1 & ganador4 > ganador3 & ganador4 > ganador2 & ganador4 > ganador5) {
+            ganadomas = "NADADOR 4";
+        } else if (ganador5 > ganador1 & ganador5 > ganador3 & ganador5 > ganador4 & ganador5 > ganador2) {
+            ganadomas = "NADADOR 5";
+        }
     }
     private void nada3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada3ActionPerformed
         // TODO add your handling code here:
@@ -411,7 +468,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         eliminar.setEnabled(true);
         comboBox.addItem("Nadador 3");
         tiempo1++;
-        
+
     }//GEN-LAST:event_nada3ActionPerformed
 
     private void nada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nada1ActionPerformed
@@ -488,6 +545,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         comboBox.removeAllItems();
         comboBox.setEnabled(true);
         eliminar.setEnabled(true);
+        listacomp.clear();
         bus = false;
         n1 = "";
         n2 = "";
@@ -509,10 +567,9 @@ public class JuegoPiscina extends javax.swing.JFrame {
             carrera.iniciar(n1, n2, n3, n4, n5);
             contcarreras++;
             iniciar.setEnabled(false);
-            nueva.setEnabled(true);
+            nueva.setEnabled(false);
             comboBox.setEnabled(false);
             eliminar.setEnabled(false);
-
         }
     }//GEN-LAST:event_iniciarActionPerformed
 
@@ -584,13 +641,10 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }//GEN-LAST:event_timeActionPerformed
 
     private void reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesActionPerformed
-
-        // TODO add your handling code here:
-        Reportes reporte = new Reportes(contcarreras);
+        Reportes reporte = new Reportes(contcarreras, ganador1, ganador2, ganador3, ganador4, ganador5, perdidomas, ganadomas, perdedor1, perdedor2, perdedor3, perdedor4, perdedor5);
         reporte.setVisible(true);
         reporte.setLocationRelativeTo(null);
-        reporte.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        dispose();
+
     }//GEN-LAST:event_reportesActionPerformed
 
     private void desempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desempateActionPerformed
@@ -602,7 +656,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        validarGanador();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

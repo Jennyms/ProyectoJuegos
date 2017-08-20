@@ -38,7 +38,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     int puntosPerdidos = 0;
     int movimientos = 0;
     boolean bus = false;
-    boolean busempezar = false; 
+    boolean busempezar = false;
     Integer[][] Matlog = new Integer[8][5];//object of the logic matrix
     AudioClip alert;
 
@@ -71,18 +71,15 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                 labels[fila][columna].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));//add an icon
                 jPanel1.add(labels[fila][columna], null);//create a matrix on panel
                 Matlog[fila][columna] = 1;//value of the position where the questions are going to be
-
                 x += 100;
             }
             y += 80;
             x = 20;
-
         }
         labels[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/frente.jpg")));//icon of the gamer
         Matlog[0][0] = 3;//value of the gamer
         labels[filas - 1][columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/meta.jpg")));//icon of the final position
         Matlog[filas - 1][columnas - 1] = 4;//value of the final position
-
     }
 
     private class ButtonController implements MouseListener {
@@ -95,7 +92,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
             while (bus) {//Until the person has removed the obstacle it stops realizing this condition
                 for (int i = 0; i < filas; i++) {
                     for (int k = 0; k < columnas; k++) {
-                        if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 2){//When the person selects the wildcard
+                        if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 2) {//When the person selects the wildcard
                             labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));//change the background
                             Matlog[i][k] = 1;//It changes the value of the wildcard 
                             bus = false;//this line makes the action not to happen again
@@ -164,7 +161,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         while (p < 1) {
             int z = (int) (Math.random() * 8) + 0;
             int v = (int) (Math.random() * 5) + 0;//generte a random for take a wildcard position
-
             if (z != 0 || v != 1) {
                 if (z != 1 || v != 0) {
                     if (Matlog[z][v] == 1) {
@@ -202,7 +198,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                 imagen, // null para icono por defecto.
                 new Object[]{"True", "False"}, // null para YES, NO y CANCEL
                 "");
-
         if (seleccion != -1) {
             if ((seleccion + 1) == 1) {
                 System.out.println("True");
@@ -234,11 +229,47 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                 }
             }
             bus = false;//disable the MouseEvent
-            //en medio de 4 obstaculos
-            
-            
+            verificarPosicion();
         }
 
+    }
+
+    public void verificarPosicion() {
+        //esquina derecha arriba
+        if (Matlog[x][y] == Matlog[0][4]) {
+            if (Matlog[x][y - 1] == 0 & Matlog[x + 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha arriba");
+            } else if (Matlog[x][y - 1] == 2 & Matlog[x + 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha 1");
+            } else if (Matlog[x][y - 1] == 0 & Matlog[x + 1][y] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha 2");
+            }
+            return;
+        } //esquina izquierda abajo
+        else if (Matlog[x][y] == Matlog[7][0]) {
+            if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo");
+            } else if (Matlog[x - 1][y] == 2 & Matlog[x][y + 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo 1");
+            } else if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo 2");
+            }
+            return;
+        }
+        else if (Matlog[x][y]==Matlog[x][0]){
+            if(Matlog[x+1][y]==0&Matlog[x][y+1]==0&Matlog[x-1][y]==0){
+                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
+            }else if(Matlog[x+1][y]==2&Matlog[x][y+1]==0&Matlog[x-1][y]==0){
+                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
+            }else if(Matlog[x+1][y]==0&Matlog[x][y+1]==2&Matlog[x-1][y]==0){
+                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
+            }else if(Matlog[x+1][y]==0&Matlog[x][y+1]==0&Matlog[x-1][y]==2){
+                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
+            }
+            return;
+        }else if(Matlog[x][y]==Matlog[0][y]){
+            
+        }
     }
 
     /**
@@ -383,7 +414,9 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
             }
         });
 
+        playagain.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         playagain.setText("Volver a Jugar");
+        playagain.setFocusable(false);
         playagain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playagainActionPerformed(evt);
@@ -411,9 +444,9 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
+                        .addGap(44, 44, 44)
                         .addComponent(playagain)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -453,8 +486,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     }//GEN-LAST:event_moveActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        // TODO add your handling code here:
-        
         //open the window to the quiz game and close the last window
         Juegos2 ventana = new Juegos2();
         ventana.setLocationRelativeTo(null);
@@ -464,23 +495,19 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        // TODO add your handling code here:
+        // close the window
         System.exit(0);
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         busempezar = true;//enable the play button
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
-        // TODO add your handling code here:
         if (busempezar) {
             switch (evt.getExtendedKeyCode()) {
                 case KeyEvent.VK_UP:
                     if (labels[x][y] == labels[0][y]) {
-
                         break;
                     } else {
                         if (Matlog[x - 1][y] == 1) {
@@ -498,12 +525,10 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                         } else if (Matlog[x - 1][y] == 2) {
                             break;
                         }
-
                     }
 
                 case KeyEvent.VK_DOWN:
                     if (labels[x][y] == labels[filas - 1][y]) {
-
                         break;
                     } else {
                         if (Matlog[x + 1][y] == 1) {
@@ -517,7 +542,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             preguntas();
                             break;
                         } else if (Matlog[x + 1][y] == 0) {
-
                             break;
                         } else if (Matlog[x + 1][y] == 2) {
                             break;
@@ -532,16 +556,15 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                                     labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
                                     Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
                                     busempezar = false;
-                                    JOptionPane.showMessageDialog(null, "GANASTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+                                    JOptionPane.showMessageDialog(null, "GANASTE LA PARTIDA", "FELICITACIONES", JOptionPane.INFORMATION_MESSAGE, imagen);
                                     break;
                                 }
                                 break;
                             } else {
-                                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/triste.png")));
+                                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/perdio.jpg")));
                                 Icon imagen = new ImageIcon(getClass().getResource("/icon/gameover.png"));
                                 busempezar = false;
-                                JOptionPane.showMessageDialog(null, "PERDIÓ", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
-
+                                JOptionPane.showMessageDialog(null, "PERDISTE LA PARTIDA", "LO SIENTO", JOptionPane.INFORMATION_MESSAGE, imagen);
                             }
                             break;
                         }
@@ -549,7 +572,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
                 case KeyEvent.VK_RIGHT:
                     if (labels[x][y] == labels[x][columnas - 1]) {
-
                         break;
                     } else {
                         if (Matlog[x][y + 1] == 1) {
@@ -563,7 +585,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             preguntas();
                             break;
                         } else if (Matlog[x][y + 1] == 0) {
-
                             break;
                         } else if (Matlog[x][y + 1] == 2) {
                             break;
@@ -578,16 +599,15 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                                     labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
                                     Icon imagen = new ImageIcon(getClass().getResource("/imagenes/premio.png"));
                                     busempezar = false;
-                                    JOptionPane.showMessageDialog(null, "GANASTE", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
+                                    JOptionPane.showMessageDialog(null, "GANASTE LA PARTIDA", "FELICITACIONES", JOptionPane.INFORMATION_MESSAGE, imagen);
                                     break;
                                 }
                                 break;
                             } else {
-                                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/triste.png")));
+                                labels[x][y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/perdio.jpg")));
                                 Icon imagen = new ImageIcon(getClass().getResource("/icon/gameover.png"));
                                 busempezar = false;
-                                JOptionPane.showMessageDialog(null, "PERDIÓ", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, imagen);
-
+                                JOptionPane.showMessageDialog(null, "PERDISTE LA PARTIDA", "LO SIENTO", JOptionPane.INFORMATION_MESSAGE, imagen);
                             }
                             break;
                         }
@@ -608,7 +628,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             preguntas();
                             break;
                         } else if (Matlog[x][y - 1] == 0) {
-
                             break;
                         } else if (Matlog[x][y - 1] == 2) {
                             break;
@@ -625,7 +644,6 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         dispose();
         preguntas.setLocationRelativeTo(null);
         preguntas.setVisible(true);
-
     }//GEN-LAST:event_playagainActionPerformed
 
     /**

@@ -15,18 +15,53 @@ public class Reportes extends javax.swing.JFrame {
 
     /**
      * Creates new form Reportes
+     *
      * @param cantidadcarreras
      */
-    int carreras=0;
-    public Reportes(int cantidadcarreras) {
+    int carreras = 0;
+    int gana1 = 0;
+    int gana2 = 0;
+    int gana3 = 0;
+    int gana4 = 0;
+    int gana5 = 0;
+
+    String permas = "";
+    String ganados = "";
+    int perdi1 = 0;
+    int perdi2 = 0;
+    int perdi3 = 0;
+    int perdi4 = 0;
+    int perdi5 = 0;
+
+    public Reportes(int cantidadcarreras, int ga1, int ga2, int ga3, int ga4, int ga5, String perdido, String ganado,
+            int pe1, int pe2, int pe3, int pe4, int pe5) {
+        initComponents();
         back3.setContentAreaFilled(false);
         back3.setBorder(null);
-        initComponents();
-        carreras= cantidadcarreras;
+        reset.setContentAreaFilled(false);
+        reset.setBorder(null);
+        carreras = cantidadcarreras;
+        gana1 = ga1;
+        gana2 = ga2;
+        gana3 = ga3;
+        gana4 = ga4;
+        gana5 = ga5;
+        permas = perdido;
+        ganados = ganado;
+        perdi1 = pe1;
+        perdi2 = pe2;
+        perdi3 = pe3;
+        perdi4 = pe4;
+        perdi5 = pe5;
         setTex();
     }
-    public void setTex(){
-        cantidadcarreras.setText("Total de carreras realizadas: "+String.valueOf(carreras));
+
+    public void setTex() {
+        cantidadcarreras.setText("Total de carreras realizadas: " + String.valueOf(carreras));
+        cantcadacompe.setText("CANTIDAD DE CARRERAS GANADAS DE CADA NADADOR\n\n" + "NADADOR 1: " + String.valueOf(gana1) + "\nNADADOR 2: " + String.valueOf(gana2) + "\nNADADOR 3: " + String.valueOf(gana3) + "\nNADADOR 4: " + String.valueOf(gana4) + "\nNADADOR 5: " + String.valueOf(gana5));
+        perdidomas.setText("NOMBRE DEL NADADOR QUE HA PERDIDO MAS VECES: " + permas);
+        masgana.setText("NOMBRE DEL NADADOR QUE HA GANADO MAS VECES: " + ganados);
+        cantperdimas.setText("CANTIDAD DE CARRERAS PERDIDAS DE CADA NADADOR\n\n" + "NADADOR 1: " + String.valueOf(perdi1) + "\nNADADOR 2: " + String.valueOf(perdi2) + "\nNADADOR 3: " + String.valueOf(perdi3) + "\nNADADOR 4: " + String.valueOf(perdi4) + "\nNADADOR 5: " + String.valueOf(perdi5));
     }
 
     /**
@@ -43,14 +78,20 @@ public class Reportes extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        cantcadacompe = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         cantidadcarreras = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        masgana = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        perdidomas = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        cantperdimas = new javax.swing.JTextArea();
+        reset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         back3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flecha-hacia-la-izquierda.png"))); // NOI18N
         back3.setFocusable(false);
@@ -60,9 +101,13 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTabbedPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        cantcadacompe.setEditable(false);
+        cantcadacompe.setColumns(20);
+        cantcadacompe.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        cantcadacompe.setRows(5);
+        jScrollPane1.setViewportView(cantcadacompe);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -70,15 +115,15 @@ public class Reportes extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Cantidad de veces que ha ganado cada competidor", jPanel3);
@@ -100,7 +145,7 @@ public class Reportes extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(cantidadcarreras, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Cantidad de carreras que se han efectuado", jPanel4);
@@ -109,11 +154,17 @@ public class Reportes extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(masgana, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(masgana, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Competidor que ha ganado más veces", jPanel5);
@@ -126,23 +177,45 @@ public class Reportes extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Cantidad de empates que se han registrado", jPanel7);
+
+        cantperdimas.setEditable(false);
+        cantperdimas.setColumns(20);
+        cantperdimas.setRows(5);
+        jScrollPane2.setViewportView(cantperdimas);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(perdidomas, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 309, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(perdidomas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Competidor que ha perdido más veces", jPanel6);
+
+        reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/borrar-el-archivo-icono-8929-64.png"))); // NOI18N
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,13 +223,19 @@ public class Reportes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,33 +243,67 @@ public class Reportes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(back3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(back3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(back3)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void back3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back3ActionPerformed
-        // TODO add your handling code here:
-        JuegoPiscina ventana = new JuegoPiscina();
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+        // return to swimming window
+        Reportes ventana = new Reportes(carreras, gana1, gana2, gana3, gana4, gana5, permas, ganados, perdi1, perdi2, perdi3, perdi4, perdi5);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         dispose();
     }//GEN-LAST:event_back3ActionPerformed
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        // TODO add your handling code here:
+        JuegoPiscina.contcarreras = 0;
+        JuegoPiscina.ganador1 = 0;
+        JuegoPiscina.ganador2 = 0;
+        JuegoPiscina.ganador3 = 0;
+        JuegoPiscina.ganador4 = 0;
+        JuegoPiscina.ganador5 = 0;
+        JuegoPiscina.perdedor1 = 0;
+        JuegoPiscina.perdedor2 = 0;
+        JuegoPiscina.perdedor3 = 0;
+        JuegoPiscina.perdedor4 = 0;
+        JuegoPiscina.perdedor5 = 0;
+        JuegoPiscina.perdidomas = "";
+        JuegoPiscina.ganadomas = "";
+
+        carreras = 0;
+        gana1 = 0;
+        gana2 = 0;
+        gana3 = 0;
+        gana4 = 0;
+        gana5 = 0;
+
+        permas = "";
+        ganados = "";
+        perdi1 = 0;
+        perdi2 = 0;
+        perdi3 = 0;
+        perdi4 = 0;
+        perdi5 = 0;
+        setTex();
+    }//GEN-LAST:event_resetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,14 +335,16 @@ public class Reportes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reportes(0).setVisible(true);
+                new Reportes(0, 0, 0, 0, 0, 0, null, null, 0, 0, 0, 0, 0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back3;
+    private javax.swing.JTextArea cantcadacompe;
     private javax.swing.JLabel cantidadcarreras;
+    private javax.swing.JTextArea cantperdimas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     public static javax.swing.JPanel jPanel4;
@@ -237,7 +352,10 @@ public class Reportes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel masgana;
+    private javax.swing.JLabel perdidomas;
+    private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
 }

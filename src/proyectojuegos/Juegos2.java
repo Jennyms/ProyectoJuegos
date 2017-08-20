@@ -90,9 +90,9 @@ public class Juegos2 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+                .addGap(135, 135, 135)
                 .addComponent(natacion)
-                .addGap(112, 112, 112)
+                .addGap(114, 114, 114)
                 .addComponent(preguntas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -167,7 +167,7 @@ public class Juegos2 extends javax.swing.JFrame {
         //this method change the foreground of the title
         natacion.setForeground(Color.white);
         preguntas.setForeground(Color.white);
-        int velocidad = 2; //segundos
+        int velocidad = 2; //seconds
         Timer timer;
         TimerTask tarea;
 
@@ -197,7 +197,7 @@ public class Juegos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void cerrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar3ActionPerformed
-        // TODO add your handling code here:
+        // close the principal window
         System.exit(0);
     }//GEN-LAST:event_cerrar3ActionPerformed
 

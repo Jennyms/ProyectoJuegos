@@ -21,31 +21,13 @@ public class carrera {
     static String n4 = "";
     static String n5 = "";
     
-    static public void reiniciar() {
-//        int[] vel = {240, 250, 255, 245};
-//        int[] ava = {13, 15, 16, 14};
-//        //Vel
-//        losNadadores[0].setVelocidad(vel[0]);
-//        losNadadores[1].setVelocidad(vel[rnd.nextInt(4)]);
-//        losNadadores[2].setVelocidad(vel[rnd.nextInt(4)]);
-//        losNadadores[3].setVelocidad(vel[rnd.nextInt(4)]);
-//        losNadadores[4].setVelocidad(vel[rnd.nextInt(4)]);
-//
-//        //avances
-//        losNadadores[0].setAvance(ava[0]);
-//        losNadadores[1].setAvance(ava[rnd.nextInt(4)]);
-//        losNadadores[2].setAvance(ava[rnd.nextInt(4)]);
-//        losNadadores[3].setAvance(ava[rnd.nextInt(4)]);
-//        losNadadores[4].setAvance(ava[rnd.nextInt(4)]);
-        
-    }//
 
     static public void registrarNadador() {
         //this method created the atributtes of each swimmer
         rnd = new Random();
-        int[] vel = {240, 250, 255, 245};
-        int[] ava = {13, 15, 16, 14};
-        losNadadores = new nadador[5];
+        int[] vel = {240, 250, 255, 245};//speed
+        int[] ava = {13, 15, 16, 14};//progress
+        losNadadores = new nadador[5];//Swimmer quantity to choose
         
         losNadadores[0] = new nadador(0, 0, 0, 0, 0, "-");
         losNadadores[1] = new nadador(0, 0, 0, 0, 0, "-");

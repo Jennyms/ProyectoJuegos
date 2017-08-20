@@ -7,7 +7,6 @@ package Cronometro;
 
 import java.awt.Color;
 import java.util.Random;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import proyectojuegos.JuegoPreguntas;
