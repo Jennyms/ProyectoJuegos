@@ -111,8 +111,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         reportes = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        desempate = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -345,22 +343,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Reportes");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 490, -1, -1));
-
-        desempate.setText("jButton1");
-        desempate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                desempateActionPerformed(evt);
-            }
-        });
-        getContentPane().add(desempate, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, -1, -1));
-
-        jButton1.setText("ganador");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -647,17 +629,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     }//GEN-LAST:event_reportesActionPerformed
 
-    private void desempateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desempateActionPerformed
-        // TODO add your handling code here:
-        miframe dados = new miframe();
-        dados.setLocationRelativeTo(null);
-        dados.setVisible(true);
-    }//GEN-LAST:event_desempateActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -696,10 +667,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
     private javax.swing.JButton back2;
     private javax.swing.JButton cerrar2;
     private javax.swing.JComboBox<String> comboBox;
-    private javax.swing.JButton desempate;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton iniciar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
