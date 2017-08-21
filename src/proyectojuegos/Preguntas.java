@@ -58,7 +58,7 @@ public class Preguntas {
         /*26*/ "¿NETBEANS solo se puede utilizar en el lenguaje español?",
         /*27*/ "¿En java, el “O” lógico se coloca como “&”?",
         /*28*/ "¿Las posiciones de las listas inician en 1?",
-        /*29*/ "¿Las posiciones de las de los arreglos inician en 1?",
+        /*29*/ "¿Las posiciones de los arreglos inician en 1?",
         /*30*/ "¿Una lista es lo mismo que un arreglo?",
         /*31*/ "¿Una clase abstracta se puede instanciar?",
         /*32*/ "¿Un boolean puede ser “null”?"

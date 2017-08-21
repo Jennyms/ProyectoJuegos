@@ -47,7 +47,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
     public static String perdidomas = "";
     public static String ganadomas = "";
 
-    public static ArrayList listacomp = new ArrayList<>();
+    public static ArrayList listacomp = new ArrayList<>();//list
 
     public JuegoPiscina() {
         this.getContentPane().setBackground(new java.awt.Color(238, 232, 170));
@@ -367,7 +367,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     private Timer t;
     private int m, s, cs;
-    private ActionListener acciones = new ActionListener() {
+    private ActionListener acciones = new ActionListener() {//This method create the chronometer of the career
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -380,10 +380,10 @@ public class JuegoPiscina extends javax.swing.JFrame {
                 s = 0;
                 ++m;
             }
-            actualizarLabel();
+            actualizarLabel();//set the time
             if (tiempo1 == tiempo2) {
                 t.stop();
-                validarGanador();
+                validarGanador();//call this method
                 validarPerdedor();
                 perdidoMasVeces();
                 ganadoMasVeces();
@@ -395,13 +395,13 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     };
 
-    private void actualizarLabel() {
+    private void actualizarLabel() {//it modify the time in the label
         String tiempo = (m <= 9 ? "0" : "") + m + ":" + (s <= 9 ? "0" : "") + s + ":" + (cs <= 9 ? "0" : "") + cs;
         time.setText(tiempo);
     }
 
-    public void validarGanador() {
-        System.out.println("GANADOR: " + listacomp.get(0));
+    public void validarGanador() {//it gets the first position at the list for comparing who was the first 
+//        System.out.println("GANADOR: " + listacomp.get(0));
         if (listacomp.get(0) == "Nadador 1") {
             ganador1++;
         } else if (listacomp.get(0) == "Nadador 2") {
@@ -415,8 +415,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
         }
     }
 
-    public void validarPerdedor() {
-        System.out.println("PERDEDOR:" + listacomp.get(listacomp.size() - 1));
+    public void validarPerdedor() {//it gets the last position at the list for comparing who was the last one
+//        System.out.println("PERDEDOR:" + listacomp.get(listacomp.size() - 1));
         if (listacomp.get(listacomp.size() - 1) == "Nadador 1") {
             perdedor1++;
         } else if (listacomp.get(listacomp.size() - 1) == "Nadador 2") {
@@ -431,7 +431,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
 
     }
 
-    public void perdidoMasVeces() {
+    public void perdidoMasVeces() {//it takes all the points of each player to obtain the loser
         if (perdedor1 > perdedor2 & perdedor1 > perdedor3 & perdedor1 > perdedor4 & perdedor1 > perdedor5) {
             perdidomas = "NADADOR 1";
         } else if (perdedor2 > perdedor1 & perdedor2 > perdedor3 & perdedor2 > perdedor4 & perdedor2 > perdedor5) {
@@ -445,7 +445,7 @@ public class JuegoPiscina extends javax.swing.JFrame {
         }
     }
 
-    public void ganadoMasVeces() {
+    public void ganadoMasVeces() {//it takes all the points of each player to obtain the winner
         if (ganador1 > ganador2 & ganador1 > ganador3 & ganador1 > ganador4 & ganador1 > ganador5) {
             ganadomas = "NADADOR 1";
         } else if (ganador2 > ganador1 & ganador2 > ganador3 & ganador2 > ganador4 & ganador2 > ganador5) {
@@ -583,7 +583,6 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }//GEN-LAST:event_back2ActionPerformed
 
     private void cerrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar2ActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_cerrar2ActionPerformed
 
@@ -593,7 +592,8 @@ public class JuegoPiscina extends javax.swing.JFrame {
     }//GEN-LAST:event_nadador5MousePressed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-        // TODO add your handling code here:
+        
+// This method checks the name of the swimmer to be able to eliminate it 
 
         if ("Nadador 1".equals(comboBox.getSelectedItem().toString())) {
             nada1.setEnabled(true);

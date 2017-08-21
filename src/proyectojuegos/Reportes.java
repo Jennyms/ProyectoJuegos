@@ -32,7 +32,7 @@ public class Reportes extends javax.swing.JFrame {
     int perdi3 = 0;
     int perdi4 = 0;
     int perdi5 = 0;
-
+    //It receives the points of the swimmers to place them in the area of reports
     public Reportes(int cantidadcarreras, int ga1, int ga2, int ga3, int ga4, int ga5, String perdido, String ganado,
             int pe1, int pe2, int pe3, int pe4, int pe5) {
         initComponents();
@@ -56,7 +56,7 @@ public class Reportes extends javax.swing.JFrame {
         setTex();
     }
 
-    public void setTex() {
+    public void setTex() {//It changes the text of the texarea and the labels
         cantidadcarreras.setText("Total de carreras realizadas: " + String.valueOf(carreras));
         cantcadacompe.setText("CANTIDAD DE CARRERAS GANADAS DE CADA NADADOR\n\n" + "NADADOR 1: " + String.valueOf(gana1) + "\nNADADOR 2: " + String.valueOf(gana2) + "\nNADADOR 3: " + String.valueOf(gana3) + "\nNADADOR 4: " + String.valueOf(gana4) + "\nNADADOR 5: " + String.valueOf(gana5));
         perdidomas.setText("NOMBRE DEL NADADOR QUE HA PERDIDO MAS VECES: " + permas);
@@ -273,7 +273,7 @@ public class Reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_back3ActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        // TODO add your handling code here:
+        //reset the global variables
         JuegoPiscina.contcarreras = 0;
         JuegoPiscina.ganador1 = 0;
         JuegoPiscina.ganador2 = 0;

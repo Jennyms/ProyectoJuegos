@@ -6,7 +6,6 @@
 package proyectojuegos;
 
 import Cronometro.Tempo;
-import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -38,9 +37,8 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
     int puntosPerdidos = 0;
     int movimientos = 0;
     boolean bus = false;
-    boolean busempezar = false;
+    public static boolean busempezar = false;
     Integer[][] Matlog = new Integer[8][5];//object of the logic matrix
-    AudioClip alert;
 
     public JuegoPreguntas() {
         initComponents();
@@ -48,7 +46,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
         y = 0;
         puntosGanados = 0;//gotten points 
         puntosPerdidos = 0;//lost points 
-        movimientos = 0;
+        movimientos = 0;//moves
         bus = false;
         busempezar = false;
         back.setBorder(null);
@@ -100,7 +98,7 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                             Tempo temporizador = new Tempo();//open the wildcard window
                             temporizador.setVisible(true);
                             temporizador.setLocationRelativeTo(null);
-                        } else if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 0) {//When the person selects
+                        } else if (e.getSource().equals(labels[i][k]) & Matlog[i][k] == 0) {//When the person selects the obstacles
                             labels[i][k].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));//change the background
                             Matlog[i][k] = 1;//It changes the value of the obstacle
                             bus = false;//this line makes the action not to happen again
@@ -109,13 +107,13 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                     }
                 }
             }
-            for (int n = 0; n < Matlog.length; n++) {
-                for (int o = 0; o < Matlog[n].length; o++) {
-                    System.out.print(Matlog[n][o]);
-                }
-                System.out.println("");
-            }
-            System.out.println("");
+//            for (int n = 0; n < Matlog.length; n++) {
+//                for (int o = 0; o < Matlog[n].length; o++) {
+//                    System.out.print(Matlog[n][o]);
+//                }
+//                System.out.println("");
+//            }
+//            System.out.println("");
 
         }
 
@@ -174,20 +172,20 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
             }
         }
 
-        for (int n = 0; n < Matlog.length; n++) {
-            for (int o = 0; o < Matlog[n].length; o++) {
-                System.out.print(Matlog[n][o]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
+//        for (int n = 0; n < Matlog.length; n++) {
+//            for (int o = 0; o < Matlog[n].length; o++) {
+//                System.out.print(Matlog[n][o]);
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("");
     }
 
     public void preguntas() {
         int a = 0;
         String respuesta = "";
         int posi = (int) (Math.random() * 33);
-        System.out.println(posi);
+//        System.out.println(posi);
         Icon imagen = new ImageIcon(getClass().getResource("/icon/signointerrogacion.png"));
         int seleccion = JOptionPane.showOptionDialog(
                 null,
@@ -200,24 +198,24 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
                 "");
         if (seleccion != -1) {
             if ((seleccion + 1) == 1) {
-                System.out.println("True");
+//                System.out.println("True");
                 respuesta = "true";
             } else {
-                System.out.println("False");
+//                System.out.println("False");
                 respuesta = "false";
             }
         }
-        if (Respuestas.respuestas[posi].equals(respuesta)) {
+        if (Respuestas.respuestas[posi].equals(respuesta)) {//It checks if the answers is correct
             puntosGanados++;
             ganados.setText(String.valueOf(puntosGanados));
             bus = true;////enable the MouseEvent
             busempezar = false;//disable the play button
             JOptionPane.showMessageDialog(null, "A acertado la pregunta, elimine un obstáculo\npara continuar respondiendo");
-        } else {
+        } else {//It checks if the answer is incorrect
             puntosPerdidos++;
             perdidos.setText(String.valueOf(puntosPerdidos));
             JOptionPane.showMessageDialog(null, "Respuesta incorrecta");
-            while (a < 1) {
+            while (a < 1) {//add a new obstacle
                 int v = (int) (Math.random() * 5) + 0;//generte a random for take a wildcard position
                 int z = (int) (Math.random() * 8) + 0;
                 if (Matlog[z][v] == 1) {
@@ -234,41 +232,88 @@ public final class JuegoPreguntas extends javax.swing.JFrame {
 
     }
 
-    public void verificarPosicion() {
-        //esquina derecha arriba
+    public void verificarPosicion() {//It checks the position of the player to see if this one caught between obstacles
+        //right corner
         if (Matlog[x][y] == Matlog[0][4]) {
             if (Matlog[x][y - 1] == 0 & Matlog[x + 1][y] == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha arriba");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             } else if (Matlog[x][y - 1] == 2 & Matlog[x + 1][y] == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha 1");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             } else if (Matlog[x][y - 1] == 0 & Matlog[x + 1][y] == 2) {
-                JOptionPane.showMessageDialog(rootPane, "Encerrado en esquina derecha 2");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             }
             return;
-        } //esquina izquierda abajo
+        } //lower left corner
         else if (Matlog[x][y] == Matlog[7][0]) {
             if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0) {
-                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             } else if (Matlog[x - 1][y] == 2 & Matlog[x][y + 1] == 0) {
-                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo 1");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             } else if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 2) {
-                JOptionPane.showMessageDialog(rootPane, "esquina izquierda abajo 2");
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             }
             return;
-        }
-        else if (Matlog[x][y]==Matlog[x][0]){
-            if(Matlog[x+1][y]==0&Matlog[x][y+1]==0&Matlog[x-1][y]==0){
-                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
-            }else if(Matlog[x+1][y]==2&Matlog[x][y+1]==0&Matlog[x-1][y]==0){
-                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
-            }else if(Matlog[x+1][y]==0&Matlog[x][y+1]==2&Matlog[x-1][y]==0){
-                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
-            }else if(Matlog[x+1][y]==0&Matlog[x][y+1]==0&Matlog[x-1][y]==2){
-                JOptionPane.showMessageDialog(rootPane, "lado izuierdo");
+            //at the middle of the left side       
+        } else if (Matlog[x][y] == Matlog[x][0]) {
+            if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 2 & Matlog[x][y + 1] == 0 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 2 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x - 1][y] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
             }
             return;
-        }else if(Matlog[x][y]==Matlog[0][y]){
-            
+            //In the middle of the top part
+        } else if (Matlog[x][y] == Matlog[0][y]) {
+            if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 2 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 2 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }
+            return;
+            //In the middle of the low part
+        } else if (Matlog[x][y] == Matlog[7][y]) {
+            if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x - 1][y] == 2 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 2 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }
+            return;
+            //In the middle of the right part
+        } else if (Matlog[x][y] == Matlog[x][4]) {
+            if (Matlog[x + 1][y] == 0 & Matlog[x][y - 1] == 0 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 2 & Matlog[x][y - 1] == 0 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y - 1] == 2 & Matlog[x - 1][y] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            } else if (Matlog[x + 1][y] == 0 & Matlog[x][y - 1] == 0 & Matlog[x - 1][y] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }
+            return;
+        } else {//in the middle
+            if (Matlog[x][y] == 3 & Matlog[x + 1][y] == 0  & Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }else if (Matlog[x][y] == 3 & Matlog[x + 1][y] == 2  & Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }else if (Matlog[x][y] == 3 & Matlog[x + 1][y] == 0  & Matlog[x - 1][y] == 2 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }else if (Matlog[x][y] == 3 & Matlog[x + 1][y] == 0  & Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 2 & Matlog[x][y - 1] == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }else if (Matlog[x][y] == 3 & Matlog[x + 1][y] == 0  & Matlog[x - 1][y] == 0 & Matlog[x][y + 1] == 0 & Matlog[x][y - 1] == 2) {
+                JOptionPane.showMessageDialog(rootPane, "Estás encerrado\nPerdiste la partida");
+            }
+            return;
         }
     }
 

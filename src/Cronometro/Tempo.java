@@ -10,11 +10,6 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import proyectojuegos.JuegoPreguntas;
-//import static proyectojuegos.JuegoPreguntas.columnas;
-//import static proyectojuegos.JuegoPreguntas.filas;
-//import static proyectojuegos.JuegoPreguntas.labels;
-//import static proyectojuegos.JuegoPreguntas.x;
-//import static proyectojuegos.JuegoPreguntas.y;
 
 /**
  *
@@ -65,7 +60,7 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
                 jSpinner2.setEnabled(false);//It disables the spinner
                 jSpinner3.setEnabled(false);//It disables the spinner
                 jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Cronometro/caja1.png")));
-                JOptionPane.showMessageDialog(null, "Se te acabó el tiempo\nPerdiste!");
+                JOptionPane.showMessageDialog(null, "Se te acabó el tiempo\nContinua Jugando");
                 dispose();
                 h1.suspend();//suspend the time(thread)
 
@@ -259,20 +254,20 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             jButton1.setEnabled(true);//enables the button of opening the strong box
             jToggleButton1.setEnabled(false);//blocked the start button
             SpinnerNumberModel model = new SpinnerNumberModel(
-                    new Integer(0), //Information visualized to the beginning in the spinner 
-                    new Integer(0), //Lower limit 
+                    new Integer(1), //Information visualized to the beginning in the spinner 
+                    new Integer(1), //Lower limit 
                     new Integer(9), //Upper limit
                     new Integer(1) //increase
             );
             SpinnerNumberModel model1 = new SpinnerNumberModel(
-                    new Integer(0), // Information visualized to the beginning in the spinner
-                    new Integer(0), // Lower limit 
+                    new Integer(1), // Information visualized to the beginning in the spinner
+                    new Integer(1), // Lower limit 
                     new Integer(9), // Upper limit 
                     new Integer(1) // increase 
             );
             SpinnerNumberModel model2 = new SpinnerNumberModel(
-                    new Integer(0), // Dato visualizado al inicio en el spinner 
-                    new Integer(0), // Lower limit 
+                    new Integer(1), // Information visualized to the beginning in the spinner 
+                    new Integer(1), // Lower limit 
                     new Integer(9), // Upper limit 
                     new Integer(1) // increase 
             );
@@ -307,12 +302,13 @@ public class Tempo extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(null, "Caja fuerte desactivada\n\nGanaste Automaticamente");
             dispose();
             JuegoPreguntas.labels[JuegoPreguntas.x][JuegoPreguntas.y].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/fondo.jpg")));
-            JuegoPreguntas.labels[JuegoPreguntas.filas - 1][JuegoPreguntas.columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));;
+            JuegoPreguntas.labels[JuegoPreguntas.filas - 1][JuegoPreguntas.columnas - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/triunfo.jpg")));
+            JuegoPreguntas.busempezar=false;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-//          JOptionPane.showMessageDialog(null, n1 + "-" + n2 + "-" + n3);//It shows the password for test
+  //        JOptionPane.showMessageDialog(null, n1 + "-" + n2 + "-" + n3);//It shows the password for test
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

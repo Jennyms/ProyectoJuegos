@@ -45,13 +45,14 @@ public class hiloUno extends Thread {
 
         if (n1 == "1") {
 
-            long ti = System.currentTimeMillis();
+            long ti = System.currentTimeMillis();//time
 
-            for (int j = 0; j < 120; j++) {
+            for (int j = 0; j < 120; j++) {//iterator
                 try {
                     JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x + carrera.losNadadores[0].getAvance(), JuegoPiscina.nadador1.getLocation().y);
-                    Icon icono;
-                    switch (contador1) {
+                    //get the location of the swimmer and it add the progress
+                    Icon icono;//icon for the switch
+                    switch (contador1) {//change the icon to simulate the movements of the swimmer
                         case 0:
                             contador1 = 1;
                             icono = new ImageIcon(getClass().getResource("/imagenes/2.png"));
@@ -71,19 +72,19 @@ public class hiloUno extends Thread {
 
                     sleep(carrera.losNadadores[0].getVelocidad());
 
-                    if (JuegoPiscina.nadador1.getLocation().x >= JuegoPiscina.lblLinea.getLocation().x) {
+                    if (JuegoPiscina.nadador1.getLocation().x >= JuegoPiscina.lblLinea.getLocation().x) {//when the swimmer arrived to the finish
                         tiempo2++;
                         long tf = System.currentTimeMillis();
-                        long tt = tf - ti;
-                        carrera.losNadadores[0].setTiempo(tt);
+                        long tt = tf - ti;//get the final time
+                        carrera.losNadadores[0].setTiempo(tt);//modify the time of the swimmer
                         JuegoPiscina.txtR.append("\n" + "Nadador #1: " + carrera.losNadadores[0].getTiempo() + " segundos");
                         nad1 = (int) tt; 
                         if(nad1!=0){
-                            listacomp.add("Nadador 1");
+                            listacomp.add("Nadador 1");//add the name of the swimmer to evaluate the time of them
                         }
-                        j = 120;
+                        j = 120;//finish the condition
                     } else {
-                        j++;
+                        j++;//add one point to the "for"
                     }//else
                 } //for
                 catch (InterruptedException ex) {
@@ -92,7 +93,7 @@ public class hiloUno extends Thread {
 
             }//for
 
-            JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x, JuegoPiscina.nadador1.getLocation().y);
+            JuegoPiscina.nadador1.setLocation(JuegoPiscina.nadador1.getLocation().x, JuegoPiscina.nadador1.getLocation().y);//get the final position
             this.stop();
             
         }
